@@ -5,6 +5,10 @@ const MyPosts = () => {
   return (
     <div>My posts
     <h2>New posts</h2>
+      <div>
+        <textarea ></textarea>
+        <button>Add post</button>
+      </div>
     <div>
       <Post />
       <Post />
