@@ -1,15 +1,20 @@
 import React from "react";
 
 const Navbar = () => {
+  const links = ['Profile', 'Messages', 'News', 'Music', 'Settings'];
   return (
     <nav className='nav'>
-      <div><a href="#">Profile</a></div>
-      <div><a href="#">Messages</a></div>
-      <div><a href="#">News</a></div>
-      <div><a href="#">Music</a></div>
-      <div><a href="#">Settings</a></div>
+      {links.map((title, idx) => <Link key={idx} title={title} />)}
     </nav>
   );
+}
+
+type NavbarLinkPropsType = {
+  title: string;
+};
+
+function Link(props:NavbarLinkPropsType){
+  return <div><a href="#">{props.title}</a></div>
 }
 
 export default Navbar;
