@@ -1,13 +1,17 @@
 import React from 'react';
-import styles from "./MyPosts.module.css";
+import Post from "./Post/Post";
 
 const MyPosts = () => {
   return (
     <div>My posts
     <h2>New posts</h2>
     <div>
-      <div className={styles.item}>post1</div>
-      <div className={styles.item}>post2</div>
+      <Post />
+      <Post />
+      <Post />
+      <Post />
+      <Post />
+      <Post />
     </div>
   </div>
   );
