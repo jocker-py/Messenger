@@ -2,3 +2,8 @@
     grid-area: nav;
     background-color: lightblue;
 }
+
+.link {
+    text-decoration: none;
+    color: white;
+}

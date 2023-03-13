@@ -15,7 +15,7 @@ type NavbarLinkPropsType = {
 };
 
 function Link(props:NavbarLinkPropsType){
-  return <div><a href="#">{props.title}</a></div>
+  return <div><a href="#" className={styles.link}>{props.title}</a></div>
 }
 
 export default Navbar;
