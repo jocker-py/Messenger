@@ -5,6 +5,10 @@ import styles from "./MyPosts.module.css";
 type PostType = {likes: number, message: string};
 
 const MyPosts = () => {
+  const posts:PostType[] = [
+    {likes: 2, message: 'Hello, how are you?'},
+    {likes: 3, message: "I'm fine, what about you?"}
+  ]
   return (
     <div>My posts
     <h2>New posts</h2>
