@@ -17,12 +17,7 @@ const MyPosts = () => {
         <button>Add post</button>
       </div>
     <div className={styles.posts}>
-      <Post />
-      <Post />
-      <Post />
-      <Post />
-      <Post />
-      <Post />
+      {posts.map(post => <Post likes={post.likes} message={post.message}/>)}
     </div>
   </div>
   );
