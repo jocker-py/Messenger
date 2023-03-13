@@ -8,6 +8,9 @@ const Post = () => {
          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0eQbUCAZ2d69KWQrjdiu7lepxp3Yswe18Ozhk4B0jDQ&s"
          alt="avatar"/>
     post
+      <div>
+        <span>like</span>
+      </div>
   </div>)
 }
 
