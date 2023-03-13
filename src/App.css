@@ -16,14 +16,6 @@ body {
     margin: 0 auto;
 }
 
-.header {
-    grid-area: header;
-    background-color:black;
-}
-
-.header img {
-    width: 60px;
-}
 
 .nav {
     grid-area: nav;
