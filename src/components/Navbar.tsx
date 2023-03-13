@@ -1,4 +1,5 @@
 import React from "react";
+import styles from './Navbar.module.css';
 
 const Navbar = () => {
   const links = ['Profile', 'Messages', 'News', 'Music', 'Settings'];
