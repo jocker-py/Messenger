@@ -4,7 +4,7 @@ import styles from './Navbar.module.css';
 const Navbar = () => {
   const links = ['Profile', 'Messages', 'News', 'Music', 'Settings'];
   return (
-    <nav className='nav'>
+    <nav className={styles.nav}>
       {links.map((title, idx) => <Link key={idx} title={title} />)}
     </nav>
   );
