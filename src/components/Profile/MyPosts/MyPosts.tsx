@@ -4,8 +4,12 @@ import styles from "./MyPosts.module.css";
 
 const MyPosts = () => {
   const posts:PostType[] = [
-    {likes: 2, message: 'Hello, how are you?'},
-    {likes: 3, message: "I'm fine, what about you?"}
+    {likes: 2,
+      message: 'Hello, how are you?',
+      id: 'message_1'},
+    {likes: 3,
+      message: "I'm fine, what about you?",
+      id: 'message_2'}
   ]
   return (
     <div>My posts
@@ -15,7 +19,10 @@ const MyPosts = () => {
         <button>Add post</button>
       </div>
     <div className={styles.posts}>
-      {posts.map(post => <Post likes={post.likes} message={post.message}/>)}
+      {posts.map(post => <Post key={post.id}
+                               id={post.id}
+                               likes={post.likes}
+                               message={post.message}/>)}
     </div>
   </div>
   );
