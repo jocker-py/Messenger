@@ -4,7 +4,7 @@ import styles from './Dialogs.module.css';
 const Dialogs = () => {
   return (<div className={styles.dialogs}>
     <div className={styles.dialogs__list}>
-      <div className={styles.dialogs__item}>Dimych</div>
+      <div className={styles.dialogs__item_active}>Dimych</div>
       <div className={styles.dialogs__item}>Andrey</div>
       <div className={styles.dialogs__item}>Sveta</div>
       <div className={styles.dialogs__item}>Sasha</div>

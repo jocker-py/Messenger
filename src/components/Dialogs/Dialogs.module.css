@@ -5,6 +5,13 @@
 }
 .dialogs__list{}
 .dialogs__item{}
+.dialogs__item_active {
+    background-color: white;
+    width: max-content;
+    padding: 0 10px;
+    border-left: 10px solid black;
+    transition: all 0.5s ease;
+}
 
 .messages__list{}
 .messages__item{}
