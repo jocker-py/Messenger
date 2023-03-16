@@ -2,15 +2,20 @@ import React from 'react';
 import styles from './Dialogs.module.css';
 
 const Dialogs = () => {
-  return (<div>
-    <ul className={styles.dialogs__list}>
-      <li className={styles.dialogs__item}>Dimych</li>
-      <li className={styles.dialogs__item}>Andrey</li>
-      <li className={styles.dialogs__item}>Sveta</li>
-      <li className={styles.dialogs__item}>Sasha</li>
-      <li className={styles.dialogs__item}>Viktor</li>
-      <li className={styles.dialogs__item}>Valera</li>
-    </ul>
+  return (<div className={styles.dialogs}>
+    <div className={styles.dialogs__list}>
+      <div className={styles.dialogs__item}>Dimych</div>
+      <div className={styles.dialogs__item}>Andrey</div>
+      <div className={styles.dialogs__item}>Sveta</div>
+      <div className={styles.dialogs__item}>Sasha</div>
+      <div className={styles.dialogs__item}>Viktor</div>
+      <div className={styles.dialogs__item}>Valera</div>
+    </div>
+    <div className={styles.messages__list}>
+      <div className={styles.messages__list}>Hi</div>
+      <div className={styles.messages__list}>How is your it-kamasutra?</div>
+      <div className={styles.messages__list}>Yo!</div>
+    </div>
   </div>)
 }
 
