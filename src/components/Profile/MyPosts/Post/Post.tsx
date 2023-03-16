@@ -2,7 +2,6 @@ import React from 'react';
 import styles from "./Post.module.css";
 
 export type PostType = {likes: number, message: string, id:string};
-
 const Post = (props: PostType) => {
   return (
     <div id={props.id} className={styles.item}>
