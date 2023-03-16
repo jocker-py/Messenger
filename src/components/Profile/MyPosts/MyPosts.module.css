@@ -1,3 +1,7 @@
 .posts {
-    overflow: hidden; /* delete */
+   padding-top: 10px;
+}
+
+.posts__block {
+    padding: 10px;
 }

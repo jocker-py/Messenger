@@ -12,22 +12,20 @@ const MyPosts = () => {
       id: 'message_2'}
   ]
   return (
-    <div>My posts
-    <h2>New posts</h2>
+    <div className={styles.posts__block}>
+      <h3>My posts</h3>
       <div>
-        <div>
-          <textarea ></textarea>
-        </div>
-        <div>
-          <button>Add post</button>
-        </div>
+        <textarea ></textarea>
       </div>
-    <div className={styles.posts}>
-      {posts.map(post => <Post key={post.id}
-                               id={post.id}
-                               likes={post.likes}
-                               message={post.message}/>)}
-    </div>
+      <div>
+        <button>Add post</button>
+      </div>
+      <div className={styles.posts}>
+        {posts.map(post => <Post key={post.id}
+                                 id={post.id}
+                                 likes={post.likes}
+                                 message={post.message}/>)}
+      </div>
   </div>
   );
 }
