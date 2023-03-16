@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import styles from './Navbar.module.css';
 
 type NavbarLinkPropsType = {
@@ -41,11 +42,12 @@ const Navbar = () => {
 
 function Link(props:NavbarLinkPropsType){
   return (<div>
-    <a id={props.id}
-       href={props.href}
-       className={styles.link}>
+    <NavLink id={props.id}
+             to={props.href}
+             className={styles.link}
+             activeClassName={styles.active}>
       {props.title}
-    </a>
+    </NavLink>
   </div>)
 }
 
