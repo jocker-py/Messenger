@@ -14,7 +14,7 @@ type MessageType = {id: number, message: string};
 const Message = (props: MessageType) => <div className={styles.messages__list}>{props.message}</div>
 
 const Dialogs = () => {
-  const dialogsData: DialogsItemType[] = [
+  const dialogs: DialogsItemType[] = [
     {id: 1, name: 'Dimych'},
     {id: 2, name: 'Andrey'},
     {id: 3, name: 'Sveta'},
@@ -22,7 +22,7 @@ const Dialogs = () => {
     {id: 5, name: 'Viktor'},
     {id: 6, name: 'Valera'},
   ];
-  const messagesData: MessageType[] = [
+  const messages: MessageType[] = [
     {id: 1, message: 'Hi'},
     {id: 2, message: 'How is your it-kamasutra?'},
     {id: 3, message: 'Yo!'},
@@ -32,20 +32,12 @@ const Dialogs = () => {
   ];
   return (<div className={styles.dialogs}>
     <div className={styles.dialogs__list}>
-      <DialogsItem name={"Dimych"} id={1}/>
-      <DialogsItem name={"Andrey"} id={2}/>
-      <DialogsItem name={"Sveta"} id={3}/>
-      <DialogsItem name={"Sasha"} id={4}/>
-      <DialogsItem name={"Viktor"} id={5}/>
-      <DialogsItem name={"Valera"} id={6}/>
+      {dialogs.map(
+        ({id, name}) => <DialogsItem key={id} name={name} id={id} />)}
     </div>
     <div className={styles.messages__list}>
-      <Message message={"Hi"} id={1}/>
-      <Message message={"How is your it-kamasutra?"} id={2}/>
-      <Message message={"Yo!"} id={3}/>
-      <Message message={"Yo!"} id={4}/>
-      <Message message={"Yo!"} id={5}/>
-      <Message message={"Yo!"} id={6}/>
+      {messages.map(
+        ({id, message}) => <Message key={id} message={message} id={id} />)}
     </div>
   </div>)
 }
