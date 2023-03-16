@@ -8,7 +8,7 @@ export type NavbarLinkType = {
   id: string;
 };
 
-type NavbarType = {links: NavbarLinkType[]};
+export type NavbarType = {links: NavbarLinkType[]};
 const Navbar = (props: NavbarType) => {
   return (
     <nav className={styles.nav}>
