@@ -1,12 +1,19 @@
+:root {
+    --dark: #1b2021;
+    --gray: #30343f;
+    --lien: #FAF0E6FF;
+    --sky: #cbeef3;
+}
+
 body {
     margin: 0;
     padding: 0;
-    height: 100vh;
     max-width: 1900px;
 }
 
 .app-wrapper {
     display: grid;
+    min-height: 100vh;
     grid-template-areas:
             "header header"
             "nav content"
@@ -19,6 +26,6 @@ body {
 
 .app-wrapper-content {
     grid-area: content;
-    min-height: 100vh;
-    background-color: linen;
+    background-color: var(--lien);
 }
+

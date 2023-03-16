@@ -1,13 +1,13 @@
 .nav {
     grid-area: nav;
-    background-color: lightblue;
+    background-color: var(--sky);
     padding: 20px;
 }
 
 .link {
     display: block;
     text-decoration: none;
-    color: white;
+    color: var(--gray);
     padding: 5px;
     transition: all 0.5s ease-in;
 }
@@ -16,7 +16,7 @@
     display: block;
     background-color: white;
     text-decoration: none;
-    border-left: 10px solid black;
+    border-left: 10px solid var(--gray);
     color: black;
     padding: 5px 10px;
     filter: drop-shadow(2px 2px 2px linen);
