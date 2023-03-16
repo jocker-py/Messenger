@@ -12,7 +12,7 @@ const MyPosts = () => {
       id: 'message_2'}
   ]
   return (
-    <div className={styles.posts__block}>
+    <div className={styles.posts}>
       <h3>My posts</h3>
       <div>
         <textarea ></textarea>
@@ -20,7 +20,7 @@ const MyPosts = () => {
       <div>
         <button>Add post</button>
       </div>
-      <div className={styles.posts}>
+      <div className={styles.postList}>
         {posts.map(
           ({id, message, likes}) =>
             <Post key={id} id={id} likes={likes} message={message}/>)}

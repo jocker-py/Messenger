@@ -1,7 +1,7 @@
 .posts {
-   padding-top: 10px;
+    padding: 10px;
 }
 
-.posts__block {
-    padding: 10px;
+.postList {
+    padding-top: 10px;
 }

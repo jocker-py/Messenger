@@ -3,8 +3,8 @@
     grid-template-columns: 2fr 10fr;
     padding: 20px;
 }
-.dialogs__list{}
-.dialogs__item{
+.dialogList{}
+.dialog{
     display: block;
     text-decoration: none;
     color: black;
@@ -12,7 +12,7 @@
     width: max-content;
     transition: all 0.5s ease-in;
 }
-.dialogs__item_active {
+.dialogActive {
     display: block;
     background-color: white;
     width: max-content;
@@ -22,5 +22,5 @@
     transition: all 0.5s ease-out;
 }
 
-.messages__list{}
-.messages__item{}
+.messageList{}
+.messageItem{}
