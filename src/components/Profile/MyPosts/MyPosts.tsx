@@ -15,8 +15,12 @@ const MyPosts = () => {
     <div>My posts
     <h2>New posts</h2>
       <div>
-        <textarea ></textarea>
-        <button>Add post</button>
+        <div>
+          <textarea ></textarea>
+        </div>
+        <div>
+          <button>Add post</button>
+        </div>
       </div>
     <div className={styles.posts}>
       {posts.map(post => <Post key={post.id}
