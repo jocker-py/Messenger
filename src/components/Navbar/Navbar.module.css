@@ -1,9 +1,18 @@
 .nav {
     grid-area: nav;
     background-color: lightblue;
+    padding: 20px;
 }
 
 .link {
     text-decoration: none;
     color: white;
+}
+
+.active {
+    text-decoration: none;
+    border-left: 10px solid black;
+    color: black;
+    filter: drop-shadow(2px 2px 2px linen);
+    transition: all 0.5s ease;
 }
