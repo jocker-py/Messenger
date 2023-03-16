@@ -3,3 +3,7 @@
     height: 500px;
     object-fit: cover;
 }
+
+.description {
+    padding : 10px 0 0 10px;
+}

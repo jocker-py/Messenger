@@ -6,7 +6,7 @@ const ProfileInfo = () => {
       <img className={styles.img}
            src="https://images.pexels.com/photos/1287145/pexels-photo-1287145.jpeg?auto=compress&cs=tinysrgb&w=1600"
            alt="mountains"/>
-      <div>ava + description</div>
+      <div className={styles.description}>ava + description</div>
     </div>)
 }
 
