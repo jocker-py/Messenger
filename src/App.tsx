@@ -1,7 +1,6 @@
 import React from 'react';
 import {BrowserRouter, Route} from "react-router-dom";
 import './App.css';
-import Navbar from './components/Navbar/Navbar';
 import Header from './components/Header/Header';
 import Profile from './components/Profile/Profile';
 import Dialogs from "./components/Dialogs/Dialogs";
@@ -10,6 +9,7 @@ import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 import Footer from "./components/Footer/Footer";
 import {StateType} from "./redux/state";
+import Sidebar from "./components/Sidebar/Sidebar";
 
 type AppType = {state: StateType}
 const App = (props:AppType) => {
@@ -17,7 +17,7 @@ const App = (props:AppType) => {
     <BrowserRouter>
       <div className='app-wrapper'>
         <Header />
-        <Navbar links={props.state.navBar.links}/>
+        <Sidebar state={props.state.sidebar}/>
         <div className='app-wrapper-content'>
           <Route path='/profile' render={() => <Profile state={props.state.profilePage}/>} />
           <Route path='/dialogs' render={() => <Dialogs state={props.state.dialogsPage}/>} />
