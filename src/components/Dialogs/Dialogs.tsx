@@ -10,11 +10,11 @@ const DialogsItem = (props: DialogsItemType) => {
                    activeClassName={styles.dialogs__item_active}>{props.name}</NavLink>)
 }
 
-type MessageType = {message: string};
+type MessageType = {id: number, message: string};
 const Message = (props: MessageType) => <div className={styles.messages__list}>{props.message}</div>
 
 const Dialogs = () => {
-  const dialogsData = [
+  const dialogsData: DialogsItemType[] = [
     {id: 1, name: 'Dimych'},
     {id: 2, name: 'Andrey'},
     {id: 3, name: 'Sveta'},
@@ -22,7 +22,7 @@ const Dialogs = () => {
     {id: 5, name: 'Viktor'},
     {id: 6, name: 'Valera'},
   ];
-  const messagesData = [
+  const messagesData: MessageType[] = [
     {id: 1, message: 'Hi'},
     {id: 2, message: 'How is your it-kamasutra?'},
     {id: 3, message: 'Yo!'},
@@ -40,12 +40,12 @@ const Dialogs = () => {
       <DialogsItem name={"Valera"} id={6}/>
     </div>
     <div className={styles.messages__list}>
-      <Message message={"Hi"}/>
-      <Message message={"How is your it-kamasutra?"}/>
-      <Message message={"Yo!"}/>
-      <Message message={"Yo!"}/>
-      <Message message={"Yo!"}/>
-      <Message message={"Yo!"}/>
+      <Message message={"Hi"} id={1}/>
+      <Message message={"How is your it-kamasutra?"} id={2}/>
+      <Message message={"Yo!"} id={3}/>
+      <Message message={"Yo!"} id={4}/>
+      <Message message={"Yo!"} id={5}/>
+      <Message message={"Yo!"} id={6}/>
     </div>
   </div>)
 }
