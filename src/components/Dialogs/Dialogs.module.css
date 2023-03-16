@@ -10,14 +10,16 @@
     color: black;
     padding: 5px;
     width: max-content;
-    transition: all 0.5s ease;
+    transition: all 0.5s ease-in;
 }
 .dialogs__item_active {
+    display: block;
     background-color: white;
     width: max-content;
     padding: 5px 10px;
     border-left: 10px solid black;
-    transition: all 0.5s ease;
+    filter: drop-shadow(2px 2px 2px linen);
+    transition: all 0.5s ease-out;
 }
 
 .messages__list{}

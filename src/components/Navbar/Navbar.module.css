@@ -5,17 +5,20 @@
 }
 
 .link {
+    display: block;
     text-decoration: none;
     color: white;
-    margin: 10px 5px;
+    padding: 5px;
+    transition: all 0.5s ease-in;
 }
 
 .active {
+    display: block;
     background-color: white;
     text-decoration: none;
     border-left: 10px solid black;
     color: black;
-    padding: 10px;
+    padding: 5px 10px;
     filter: drop-shadow(2px 2px 2px linen);
-    transition: all 0.5s ease;
+    transition: all 0.5s ease-out;
 }
