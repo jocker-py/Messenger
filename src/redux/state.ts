@@ -45,8 +45,8 @@ const state : StateType = {
   },
   profilePage:{
     posts: [
-      {likes: 2, message: 'Hello, how are you?', id: 'message_1'},
-      {likes: 3, message: "I'm fine, what about you?", id: 'message_2'}
+      {likes: 2, message: 'Hello, how are you?', id: 1},
+      {likes: 3, message: "I'm fine, what about you?", id: 2}
     ],
   },
   dialogsPage: {
@@ -67,6 +67,17 @@ const state : StateType = {
       {id: 6, message: 'Yo!'},
     ],
   },
+}
+
+export type AddPostType = (message: string) => void;
+export const addPost:AddPostType = (message) => {
+  const newPost: PostType = {
+    likes: 0,
+    message: message,
+    id: 3,
+  }
+  state.profilePage.posts.push(newPost);
+  console.log(state.profilePage.posts);
 }
 
 export default state;

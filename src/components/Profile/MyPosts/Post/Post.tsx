@@ -1,10 +1,10 @@
 import React from 'react';
 import styles from "./Post.module.css";
 
-export type PostType = {likes: number, message: string, id:string};
+export type PostType = {likes: number, message: string, id:number};
 const Post = (props: PostType) => {
   return (
-    <div id={props.id} className={styles.item}>
+    <div className={styles.item}>
       <img className={styles.img}
          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0eQbUCAZ2d69KWQrjdiu7lepxp3Yswe18Ozhk4B0jDQ&s"
          alt="avatar"/>

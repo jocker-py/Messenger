@@ -8,10 +8,10 @@ import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 import Footer from "./components/Footer/Footer";
-import {StateType} from "./redux/state";
+import {AddPostType, StateType} from "./redux/state";
 import Sidebar from "./components/Sidebar/Sidebar";
 
-type AppType = {state: StateType}
+type AppType = {state: StateType, addPost: AddPostType}
 const App = (props:AppType) => {
   return (
     <BrowserRouter>
@@ -19,7 +19,7 @@ const App = (props:AppType) => {
         <Header />
         <Sidebar state={props.state.sidebar}/>
         <div className='app-wrapper-content'>
-          <Route path='/profile' render={() => <Profile state={props.state.profilePage}/>} />
+          <Route path='/profile' render={() => <Profile state={props.state.profilePage} addPost={props.addPost}/>} />
           <Route path='/dialogs' render={() => <Dialogs state={props.state.dialogsPage}/>} />
           <Route path='/news' render={() => <News/>} />
           <Route path='/music' render={() => <Music/>} />
