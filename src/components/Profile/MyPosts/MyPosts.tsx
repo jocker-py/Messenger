@@ -3,7 +3,12 @@ import Post, { PostType } from "./Post/Post";
 import styles from "./MyPosts.module.css";
 import {AddPostType, UpdatePostTextType} from "../../../redux/state";
 
-type MyPostsType = {posts: PostType[], addPost: AddPostType, newPostText: string, updatePostText: UpdatePostTextType};
+type MyPostsType = {
+  posts: PostType[],
+  addPost: AddPostType,
+  newPostText: string,
+  updatePostText: UpdatePostTextType
+};
 const MyPosts = (props:MyPostsType) => {
   const postsElements = props.posts.map(
     ({id, message, likes}) =>

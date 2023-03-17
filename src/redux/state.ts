@@ -8,7 +8,11 @@ import renderEntireThree from "../render";
 export type ProfilePageType = {posts: PostType[], newPostText: string};
 export type DialogsPageType = {messages: MessageType[], dialogs: DialogType[]};
 export type SidebarType = {navLinks: NavbarLinkType[], friends: FriendType[]};
-export type StateType = { sidebar: SidebarType, profilePage: ProfilePageType, dialogsPage: DialogsPageType};
+export type StateType = {
+  sidebar: SidebarType,
+  profilePage: ProfilePageType,
+  dialogsPage: DialogsPageType
+};
 
 const state : StateType = {
   sidebar : {
