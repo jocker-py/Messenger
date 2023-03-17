@@ -4,6 +4,9 @@ import styles from "./MyPosts.module.css";
 
 type MyPostsType = {posts: PostType[]}
 const MyPosts = (props:MyPostsType) => {
+  const postsElements = props.posts.map(
+    ({id, message, likes}) =>
+      <Post key={id} id={id} likes={likes} message={message}/>);
   return (
     <div className={styles.posts}>
       <h3>My posts</h3>
@@ -14,9 +17,7 @@ const MyPosts = (props:MyPostsType) => {
         <button>Add post</button>
       </div>
       <div className={styles.postList}>
-        {props.posts.map(
-          ({id, message, likes}) =>
-            <Post key={id} id={id} likes={likes} message={message}/>)}
+        {postsElements}
       </div>
   </div>
   );
