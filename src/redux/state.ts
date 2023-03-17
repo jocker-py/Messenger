@@ -5,7 +5,7 @@ import { FriendType } from "../components/Sidebar/Friends/Friends";
 import {NavbarLinkType} from "../components/Sidebar/Navbar/Navbar";
 import renderEntireThree from "../render";
 
-export type ProfilePageType = {posts: PostType[]};
+export type ProfilePageType = {posts: PostType[], newPostText: string};
 export type DialogsPageType = {messages: MessageType[], dialogs: DialogType[]};
 export type SidebarType = {navLinks: NavbarLinkType[], friends: FriendType[]};
 export type StateType = { sidebar: SidebarType, profilePage: ProfilePageType, dialogsPage: DialogsPageType};
@@ -49,6 +49,7 @@ const state : StateType = {
       {likes: 2, message: 'Hello, how are you?', id: 1},
       {likes: 3, message: "I'm fine, what about you?", id: 2}
     ],
+    newPostText: ''
   },
   dialogsPage: {
     dialogs: [
@@ -70,14 +71,20 @@ const state : StateType = {
   },
 }
 
-export type AddPostType = (message: string) => void;
-export const addPost:AddPostType = (message) => {
+export type AddPostType = () => void;
+export const addPost:AddPostType = () => {
   const newPost: PostType = {
     likes: 0,
-    message: message,
+    message: state.profilePage.newPostText,
     id: state.profilePage.posts.length + 1,
   }
   state.profilePage.posts.push(newPost);
+  state.profilePage.newPostText = '';
+  renderEntireThree(state);
+}
+export type UpdatePostTextType = (newText:string) => void;
+export const updatePostText: UpdatePostTextType = (newText: string) => {
+  state.profilePage.newPostText = newText;
   renderEntireThree(state);
 }
 
