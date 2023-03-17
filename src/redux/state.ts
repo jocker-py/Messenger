@@ -3,7 +3,7 @@ import {MessageType} from "../components/Dialogs/Message/Message";
 import {PostType} from "../components/Profile/MyPosts/Post/Post";
 import { FriendType } from "../components/Sidebar/Friends/Friends";
 import {NavbarLinkType} from "../components/Sidebar/Navbar/Navbar";
-import {Path} from "../config/enums";
+import {Path, Types} from "../config/enums";
 import {RenderEntireThreeType} from "../index";
 
 export type ProfilePageType = {posts: PostType[], newPostText: string};
@@ -16,14 +16,15 @@ export type StateType = {
 };
 export type UpdatePostTextType = (newText:string) => void;
 export type AddPostType = () => void;
+export type ActionType = {type: Types.addPost | Types.updateNewPost, newText?:string}
+export type DispatchType = (action: ActionType) => void;
 
 export interface IStore {
   _state: StateType,
   getState(): StateType,
   _callSubscriber(): void,
-  addPost(): void,
-  updatePostText(newText: string): void,
   subscribe(observer: RenderEntireThreeType): void,
+  dispatch: DispatchType;
 }
 
 const store:IStore = {
@@ -87,26 +88,27 @@ const store:IStore = {
       ],
     },
   },
+  _callSubscriber(){},
   getState(){
     return this._state;
   },
-  _callSubscriber(){},
-  addPost(){
-    const newPost: PostType = {
-      likes: 0,
-      message: this._state.profilePage.newPostText,
-      id: this._state.profilePage.posts.length + 1,
-    }
-    this._state.profilePage.posts.push(newPost);
-    this._state.profilePage.newPostText = '';
-    this._callSubscriber();
-  },
-  updatePostText(newText){
-    this._state.profilePage.newPostText = newText;
-    this._callSubscriber();
-  },
   subscribe(observer: RenderEntireThreeType){
     this._callSubscriber = observer;
+  },
+  dispatch(action){
+    if (action.type === Types.addPost) {
+      const newPost: PostType = {
+        likes: 0,
+        message: this._state.profilePage.newPostText,
+        id: this._state.profilePage.posts.length + 1,
+      }
+      this._state.profilePage.posts.push(newPost);
+      this._state.profilePage.newPostText = '';
+      this._callSubscriber();
+    } else if (action.type === Types.updateNewPost){
+      this._state.profilePage.newPostText = action.newText || '';
+      this._callSubscriber();
+    }
   }
 }
 
