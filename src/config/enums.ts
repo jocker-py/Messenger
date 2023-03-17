@@ -5,3 +5,8 @@ export enum Path {
   SETTINGS = '/settings',
   NEWS = '/news',
 }
+
+export enum Types  {
+  addPost = 'ADD-POST',
+  updateNewPost = 'UPDATE-NEW-POST',
+}
