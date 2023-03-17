@@ -4,6 +4,7 @@ import {PostType} from "../components/Profile/MyPosts/Post/Post";
 import { FriendType } from "../components/Sidebar/Friends/Friends";
 import {NavbarLinkType} from "../components/Sidebar/Navbar/Navbar";
 import renderEntireThree from "../render";
+import {Path} from "../config/enums";
 
 export type ProfilePageType = {posts: PostType[], newPostText: string};
 export type DialogsPageType = {messages: MessageType[], dialogs: DialogType[]};
@@ -18,27 +19,27 @@ const state : StateType = {
   sidebar : {
     navLinks: [{
       title: 'Profile',
-      href: '/profile',
+      href: Path.PROFILE,
       id: 1,
     },
       {
         title: 'Messages',
-        href: '/dialogs',
+        href: Path.DIALOGS,
         id: 2,
       },
       {
         title: 'News',
-        href: '/news',
+        href: Path.NEWS,
         id: 3,
       },
       {
         title: 'Music',
-        href: '/music',
+        href: Path.MUSIC,
         id: 4,
       },
       {
         title: 'Settings',
-        href: '/settings',
+        href: Path.SETTINGS,
         id: 5,
       }],
     friends: [
