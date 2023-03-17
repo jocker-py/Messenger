@@ -1,6 +1,16 @@
 import React from 'react';
 import './index.css';
-import state from './redux/state';
-import renderEntireThree from "./render";
+import store from './redux/state';
+import ReactDOM from "react-dom";
+import App from "./App";
 
-renderEntireThree(state);
+export type RenderEntireThreeType = () => void;
+const renderEntireThree:RenderEntireThreeType = () => {
+  ReactDOM.render(
+    <App store={store}/>,
+    document.getElementById('root')
+  );
+}
+
+renderEntireThree();
+store.subscribe(renderEntireThree);
