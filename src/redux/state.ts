@@ -3,6 +3,7 @@ import {MessageType} from "../components/Dialogs/Message/Message";
 import {PostType} from "../components/Profile/MyPosts/Post/Post";
 import { FriendType } from "../components/Sidebar/Friends/Friends";
 import {NavbarLinkType} from "../components/Sidebar/Navbar/Navbar";
+import renderEntireThree from "../render";
 
 export type ProfilePageType = {posts: PostType[]};
 export type DialogsPageType = {messages: MessageType[], dialogs: DialogType[]};
@@ -74,10 +75,10 @@ export const addPost:AddPostType = (message) => {
   const newPost: PostType = {
     likes: 0,
     message: message,
-    id: 3,
+    id: state.profilePage.posts.length + 1,
   }
   state.profilePage.posts.push(newPost);
-  console.log(state.profilePage.posts);
+  renderEntireThree(state);
 }
 
 export default state;
