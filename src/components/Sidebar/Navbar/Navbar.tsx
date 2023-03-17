@@ -13,7 +13,7 @@ const Navbar = (props: NavbarType) => {
 }
 
 export type NavbarLinkType = { title: string; href: string; id: number; };
-function Link(props:NavbarLinkType){
+const Link = (props:NavbarLinkType) => {
   return (<div>
     <NavLink to={props.href} className={styles.link} activeClassName={styles.active}>
       {props.title}
