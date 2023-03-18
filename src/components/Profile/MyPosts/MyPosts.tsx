@@ -1,8 +1,7 @@
 import React, {ChangeEvent} from 'react';
 import Post, { PostType } from "./Post/Post";
 import styles from "./MyPosts.module.css";
-import {DispatchType} from "../../../redux/state";
-import {Types} from "../../../config/enums";
+import {addPostActionCreator, DispatchType, updateNewPostActionCreator} from "../../../redux/state";
 
 type MyPostsType = {
   posts: PostType[],
@@ -14,15 +13,11 @@ const MyPosts = (props:MyPostsType) => {
     ({id, message, likes}) =>
       <Post key={id} id={id} likes={likes} message={message}/>);
   const updatePostText = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    const action = {
-      type: Types.updateNewPost,
-      newText: e.currentTarget.value
-    };
-    props.dispatch(action)
+    let text = e.currentTarget.value;
+    props.dispatch(updateNewPostActionCreator(text))
   }
   const addPost = () => {
-    const action = {type: Types.addPost};
-    props.dispatch(action);
+    props.dispatch(addPostActionCreator());
   }
   return (
     <div className={styles.posts}>

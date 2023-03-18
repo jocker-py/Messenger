@@ -9,15 +9,15 @@ import {RenderEntireThreeType} from "../index";
 export type ProfilePageType = {posts: PostType[], newPostText: string};
 export type DialogsPageType = {messages: MessageType[], dialogs: DialogType[]};
 export type SidebarType = {navLinks: NavbarLinkType[], friends: FriendType[]};
-export type StateType = {
-  sidebar: SidebarType,
-  profilePage: ProfilePageType,
-  dialogsPage: DialogsPageType
-};
-export type UpdatePostTextType = (newText:string) => void;
-export type AddPostType = () => void;
-export type ActionType = {type: Types.addPost | Types.updateNewPost, newText?:string}
-export type DispatchType = (action: ActionType) => void;
+export type StateType = { sidebar: SidebarType, profilePage: ProfilePageType, dialogsPage: DialogsPageType };
+
+type ActionType = Types.addPost | Types.updateNewPost;
+interface IAction {type: ActionType, text?:string}
+export type DispatchType = (action: IAction) => void;
+export type addPostActionCreatorType = () => IAction;
+export const addPostActionCreator:addPostActionCreatorType = () => ({type: Types.addPost});
+export type updatePostActionCreatorType = (text:string) => IAction
+export const updateNewPostActionCreator:updatePostActionCreatorType = (text) => ({type: Types.updateNewPost, text: text});
 
 export interface IStore {
   _state: StateType,
@@ -106,7 +106,7 @@ const store:IStore = {
       this._state.profilePage.newPostText = '';
       this._callSubscriber();
     } else if (action.type === Types.updateNewPost){
-      this._state.profilePage.newPostText = action.newText || '';
+      this._state.profilePage.newPostText = action.text || '';
       this._callSubscriber();
     }
   }
