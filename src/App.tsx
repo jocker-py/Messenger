@@ -15,6 +15,7 @@ import {Path} from "./config/enums";
 interface IApp { store: IStore; }
 const App: FC<IApp> = ({store}) => {
   const state = store.getState();
+  const dispatch = store.dispatch.bind(store);
   return (
     <BrowserRouter>
       <div className='app-wrapper'>
@@ -23,8 +24,8 @@ const App: FC<IApp> = ({store}) => {
         <div className='app-wrapper-content'>
           <Route path={Path.PROFILE}
                  render={() =>
-                   <Profile state={state.profilePage} dispatch={store.dispatch.bind(store)}/>} />
-          <Route path={Path.DIALOGS} render={() => <Dialogs state={state.dialogsPage}/>} />
+                   <Profile state={state.profilePage} dispatch={dispatch}/>} />
+          <Route path={Path.DIALOGS} render={() => <Dialogs state={state.dialogsPage} dispatch={dispatch}/>} />
           <Route path={Path.NEWS} render={() => <News/>} />
           <Route path={Path.MUSIC} render={() => <Music/>} />
           <Route path={Path.SETTINGS} render={() => <Settings/>} />
