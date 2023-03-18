@@ -7,17 +7,21 @@ import {Path, Types} from "../config/enums";
 import {RenderEntireThreeType} from "../index";
 
 export type ProfilePageType = {posts: PostType[], newPostText: string};
-export type DialogsPageType = {messages: MessageType[], dialogs: DialogType[]};
+export type DialogsPageType = {messages: MessageType[], dialogs: DialogType[], newMessageText: string};
 export type SidebarType = {navLinks: NavbarLinkType[], friends: FriendType[]};
 export type StateType = { sidebar: SidebarType, profilePage: ProfilePageType, dialogsPage: DialogsPageType };
 
-type ActionType = Types.addPost | Types.updateNewPost;
+type ActionType = Types.addPost | Types.updateNewPost | Types.updateNewMessageText | Types.sendMessage;
 interface IAction {type: ActionType, text?:string}
 export type DispatchType = (action: IAction) => void;
 export type addPostActionCreatorType = () => IAction;
 export const addPostActionCreator:addPostActionCreatorType = () => ({type: Types.addPost});
 export type updatePostActionCreatorType = (text:string) => IAction
 export const updateNewPostActionCreator:updatePostActionCreatorType = (text) => ({type: Types.updateNewPost, text: text});
+export type updateNewMessageTextActionCreatorType = (text:string) => IAction;
+export const updateNewMessageTextActionCreator:updateNewMessageTextActionCreatorType = (text:string) => ({type: Types.updateNewMessageText, text: text});
+export type sendMessageActionCreatorType = () => IAction;
+export const sendMessageActionCreator:sendMessageActionCreatorType = () => ({type: Types.sendMessage});
 
 export interface IStore {
   _state: StateType,
@@ -86,6 +90,7 @@ const store:IStore = {
         {id: 5, message: 'Yo!'},
         {id: 6, message: 'Yo!'},
       ],
+      newMessageText: '',
     },
   },
   _callSubscriber(){},
@@ -107,6 +112,17 @@ const store:IStore = {
       this._callSubscriber();
     } else if (action.type === Types.updateNewPost){
       this._state.profilePage.newPostText = action.text || '';
+      this._callSubscriber();
+    } else if (action.type === Types.sendMessage){
+      const newMessage = {
+        message : this._state.dialogsPage.newMessageText,
+        id : this._state.dialogsPage.messages.length + 1,
+      }
+      this._state.dialogsPage.messages.push(newMessage);
+      this._state.dialogsPage.newMessageText = '';
+      this._callSubscriber();
+    } else if (action.type === Types.updateNewMessageText){
+      this._state.dialogsPage.newMessageText = action.text || '';
       this._callSubscriber();
     }
   }
