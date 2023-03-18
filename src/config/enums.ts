@@ -9,4 +9,6 @@ export enum Path {
 export enum Types  {
   addPost = 'ADD-POST',
   updateNewPost = 'UPDATE-NEW-POST',
+  updateNewMessageText = 'UPDATE-NEW-MESSAGE-TEXT',
+  sendMessage = 'SEND-MESSAGE',
 }
