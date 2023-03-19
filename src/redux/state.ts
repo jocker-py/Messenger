@@ -1,7 +1,9 @@
-import {PostType} from "../components/Profile/MyPosts/Post/Post";
-import {Path, Types} from "../config/enums";
+import {Path} from "../config/enums";
 import {RenderEntireThreeType} from "../index";
 import {IStore} from "./interfaces";
+import dialogsReducer from "./dialogs-reducer";
+import profileReducer from "./profile-reducer";
+import sidebarReducer from "./sidebar-reducer";
 
 const store:IStore = {
   _state: {
@@ -73,30 +75,10 @@ const store:IStore = {
     this._callSubscriber = observer;
   },
   dispatch(action){
-    if (action.type === Types.addPost) {
-      const newPost: PostType = {
-        likes: 0,
-        message: this._state.profilePage.newPostText,
-        id: this._state.profilePage.posts.length + 1,
-      }
-      this._state.profilePage.posts.push(newPost);
-      this._state.profilePage.newPostText = '';
-      this._callSubscriber();
-    } else if (action.type === Types.updateNewPost){
-      this._state.profilePage.newPostText = action.text || '';
-      this._callSubscriber();
-    } else if (action.type === Types.sendMessage){
-      const newMessage = {
-        message : this._state.dialogsPage.newMessageText,
-        id : this._state.dialogsPage.messages.length + 1,
-      }
-      this._state.dialogsPage.messages.push(newMessage);
-      this._state.dialogsPage.newMessageText = '';
-      this._callSubscriber();
-    } else if (action.type === Types.updateNewMessageText){
-      this._state.dialogsPage.newMessageText = action.text || '';
-      this._callSubscriber();
-    }
+    this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
+    this._state.profilePage = profileReducer(this._state.profilePage, action);
+    this._state.sidebar = sidebarReducer(this._state.sidebar, action);
+    this._callSubscriber();
   }
 }
 
