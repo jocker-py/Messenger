@@ -1,35 +1,7 @@
-import {DialogType} from "../components/Dialogs/Dialog/Dialog";
-import {MessageType} from "../components/Dialogs/Message/Message";
 import {PostType} from "../components/Profile/MyPosts/Post/Post";
-import { FriendType } from "../components/Sidebar/Friends/Friends";
-import {NavbarLinkType} from "../components/Sidebar/Navbar/Navbar";
 import {Path, Types} from "../config/enums";
 import {RenderEntireThreeType} from "../index";
-
-export type ProfilePageType = {posts: PostType[], newPostText: string};
-export type DialogsPageType = {messages: MessageType[], dialogs: DialogType[], newMessageText: string};
-export type SidebarType = {navLinks: NavbarLinkType[], friends: FriendType[]};
-export type StateType = { sidebar: SidebarType, profilePage: ProfilePageType, dialogsPage: DialogsPageType };
-
-type ActionType = Types.addPost | Types.updateNewPost | Types.updateNewMessageText | Types.sendMessage;
-interface IAction {type: ActionType, text?:string}
-export type DispatchType = (action: IAction) => void;
-export type addPostActionCreatorType = () => IAction;
-export const addPostActionCreator:addPostActionCreatorType = () => ({type: Types.addPost});
-export type updatePostActionCreatorType = (text:string) => IAction
-export const updateNewPostActionCreator:updatePostActionCreatorType = (text) => ({type: Types.updateNewPost, text: text});
-export type updateNewMessageTextActionCreatorType = (text:string) => IAction;
-export const updateNewMessageTextActionCreator:updateNewMessageTextActionCreatorType = (text:string) => ({type: Types.updateNewMessageText, text: text});
-export type sendMessageActionCreatorType = () => IAction;
-export const sendMessageActionCreator:sendMessageActionCreatorType = () => ({type: Types.sendMessage});
-
-export interface IStore {
-  _state: StateType,
-  getState(): StateType,
-  _callSubscriber(): void,
-  subscribe(observer: RenderEntireThreeType): void,
-  dispatch: DispatchType;
-}
+import {IStore} from "./interfaces";
 
 const store:IStore = {
   _state: {

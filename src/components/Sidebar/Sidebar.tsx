@@ -1,8 +1,8 @@
 import React from 'react';
 import Navbar from "./Navbar/Navbar";
 import styles from "./Sidbar.module.css";
-import {SidebarType} from "../../redux/state";
 import Friends from "./Friends/Friends";
+import {SidebarType} from "../../redux/types";
 
 type SidebarPropsType = {state: SidebarType};
 const Sidebar = (props: SidebarPropsType) => {
