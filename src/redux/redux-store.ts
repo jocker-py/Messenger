@@ -10,5 +10,6 @@ const reducers = combineReducers({
 })
 
 const store = createStore(reducers);
+export type StoreType = typeof store;
 export default store;
 
