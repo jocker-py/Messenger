@@ -8,9 +8,16 @@ export const addPostActionCreator:addPostActionCreatorType = () => ({type: Types
 export type updatePostActionCreatorType = (text:string) => IAction
 export const updateNewPostActionCreator:updatePostActionCreatorType = (text) => ({type: Types.updateNewPost, text: text});
 
+const initialState: ProfilePageType = {
+  posts: [
+    {likes: 2, message: 'Hello, how are you?', id: 1},
+    {likes: 3, message: "I'm fine, what about you?", id: 2}
+  ],
+  newPostText: ''
+};
 
 type ProfileReducerType = (state: ProfilePageType, action: IAction) => ProfilePageType;
-const profileReducer: ProfileReducerType = (state, action) => {
+const profileReducer: ProfileReducerType = (state = initialState, action) => {
   switch (action.type) {
     case Types.addPost:
     const newPost: PostType = {
