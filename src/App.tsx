@@ -10,9 +10,10 @@ import Settings from "./components/Settings/Settings";
 import Footer from "./components/Footer/Footer";
 import Sidebar from "./components/Sidebar/Sidebar";
 import {Path} from "./config/enums";
-import {IStore} from "./redux/interfaces";
+import {StoreType} from "./redux/redux-store";
 
-interface IApp { store: IStore; }
+
+interface IApp { store: StoreType }
 const App: FC<IApp> = ({store}) => {
   const state = store.getState();
   const dispatch = store.dispatch.bind(store);
