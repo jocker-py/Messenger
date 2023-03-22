@@ -1,24 +1,24 @@
 import React, {ChangeEvent} from 'react';
 import Post, { PostType } from "./Post/Post";
 import styles from "./MyPosts.module.css";
-import {DispatchType} from "../../../redux/types";
-import {addPostActionCreator, updateNewPostActionCreator} from "../../../redux/profile-reducer";
 
 type MyPostsType = {
   posts: PostType[],
   newPostText: string,
-  dispatch: DispatchType
+  updatePostText: (text: string) => void,
+  addPost: () => void,
 };
+
 const MyPosts = (props:MyPostsType) => {
   const postsElements = props.posts.map(
     ({id, message, likes}) =>
       <Post key={id} id={id} likes={likes} message={message}/>);
   const updatePostText = (e: ChangeEvent<HTMLTextAreaElement>) => {
     let text = e.currentTarget.value;
-    props.dispatch(updateNewPostActionCreator(text))
+    props.updatePostText(text);
   }
   const addPost = () => {
-    props.dispatch(addPostActionCreator());
+    props.addPost()
   }
   return (
     <div className={styles.posts}>

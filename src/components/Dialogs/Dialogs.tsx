@@ -1,23 +1,28 @@
 import React, {ChangeEvent} from 'react';
 import styles from './Dialogs.module.css';
-import Message from "./Message/Message";
-import Dialog from "./Dialog/Dialog";
-import {DialogsPageType, DispatchType} from "../../redux/types";
-import {sendMessageActionCreator, updateNewMessageTextActionCreator} from "../../redux/dialogs-reducer";
+import Message, {MessageType} from "./Message/Message";
+import Dialog, {DialogType} from "./Dialog/Dialog";
 
-type DialogsType = {state:DialogsPageType, dispatch: DispatchType};
+type DialogsType = {
+  dialogs:DialogType[],
+  messages: MessageType[],
+  newMessageText: string,
+  updateNewMessageText: (text: string) => void,
+  sendMessage: () => void,
+};
+
 const Dialogs = (props: DialogsType) => {
-  const dialogsElements = props.state.dialogs.map(
+  const dialogsElements = props.dialogs.map(
     ({id, name}) => <Dialog key={id} name={name} id={id} />);
-  const messagesElements = props.state.messages.map(
+  const messagesElements = props.messages.map(
     ({id, message}) => <Message key={id} message={message} id={id} />)
-  const messageText = props.state.newMessageText;
+  const messageText = props.newMessageText;
   const sendMessage = () => {
-    props.dispatch(sendMessageActionCreator());
+    props.sendMessage();
   }
   const changeNewMessageText = (e: ChangeEvent<HTMLTextAreaElement>) => {
     let text = e.currentTarget.value
-    props.dispatch(updateNewMessageTextActionCreator(text));
+    props.updateNewMessageText(text);
   }
 
   return (<div className={styles.dialogs}>
@@ -26,7 +31,9 @@ const Dialogs = (props: DialogsType) => {
       <div className={styles.messagesList}>{messagesElements}</div>
       <div>
         <div>
-          <textarea value={messageText} placeholder={"Enter your message"} onChange={changeNewMessageText}/>
+          <textarea value={messageText}
+                    placeholder={"Enter your message"}
+                    onChange={changeNewMessageText}/>
         </div>
         <div>
           <button onClick={sendMessage}>Add message</button>
