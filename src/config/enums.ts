@@ -6,7 +6,7 @@ export enum Path {
   NEWS = '/news',
 }
 
-export enum Types  {
+export enum ActionType  {
   addPost = 'ADD-POST',
   updateNewPost = 'UPDATE-NEW-POST',
   updateNewMessageText = 'UPDATE-NEW-MESSAGE-TEXT',
