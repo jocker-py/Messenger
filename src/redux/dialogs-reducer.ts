@@ -1,13 +1,16 @@
-import {Types} from "../config/enums";
-import {DialogsPageType, IAction} from "./types";
+import {ActionType} from "../config/enums";
+import {DialogsType, IAction} from "./types";
 
-export type updateNewMessageTextActionCreatorType = (text:string) => IAction;
-export const updateNewMessageTextActionCreator:updateNewMessageTextActionCreatorType = (text:string) => ({type: Types.updateNewMessageText, text: text});
+export type updateNewMessageTextActionCreatorType = (text: string) => IAction;
+export const updateNewMessageTextActionCreator: updateNewMessageTextActionCreatorType = (text: string) => ({
+  type: ActionType.updateNewMessageText,
+  text: text
+});
 
 export type sendMessageActionCreatorType = () => IAction;
-export const sendMessageActionCreator:sendMessageActionCreatorType = () => ({type: Types.sendMessage});
+export const sendMessageActionCreator: sendMessageActionCreatorType = () => ({type: ActionType.sendMessage});
 
-const initialState:DialogsPageType = {
+const initialState: DialogsType = {
   dialogs: [
     {id: 1, name: 'Dimych'},
     {id: 2, name: 'Andrey'},
@@ -27,20 +30,20 @@ const initialState:DialogsPageType = {
   newMessageText: '',
 };
 
-type DialogsReducerType = (state:DialogsPageType, action: IAction) => DialogsPageType;
+type DialogsReducerType = (state: DialogsType, action: IAction) => DialogsType;
 const dialogsReducer: DialogsReducerType = (state = initialState, action) => {
- switch (action.type) {
- case Types.sendMessage:
-   const newMessage = {message: state.newMessageText, id: state.messages.length + 1}
-   state.messages.push(newMessage);
-   state.newMessageText = '';
-   return state;
- case Types.updateNewMessageText:
-   state.newMessageText = action.text || '';
-   return state;
- default :
-   return state;
- }
+  switch (action.type) {
+    case ActionType.sendMessage:
+      const newMessage = {message: state.newMessageText, id: state.messages.length + 1}
+      state.messages.push(newMessage);
+      state.newMessageText = '';
+      return state;
+    case ActionType.updateNewMessageText:
+      state.newMessageText = action.text || '';
+      return state;
+    default :
+      return state;
+  }
 };
 
 export default dialogsReducer;
