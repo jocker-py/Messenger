@@ -1,10 +1,10 @@
-import React from "react";
+import React, {FC} from "react";
 import styles from "../Dialogs.module.css";
 import {NavLink} from "react-router-dom";
 import {Path} from "../../../config/enums";
+import {DialogType} from "../../../redux/types";
 
-export type DialogType = {id: number; name: string;}
-const Dialog = (props: DialogType) => {
+const Dialog: FC<DialogType> = (props) => {
   const path = Path.DIALOGS + props.id;
   return (<NavLink to={path}
                    className={styles.dialog}

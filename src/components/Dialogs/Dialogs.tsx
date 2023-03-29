@@ -1,11 +1,12 @@
 import React, {ChangeEvent, FC} from 'react';
 import styles from './Dialogs.module.css';
-import Message, {MessageType} from "./Message/Message";
-import Dialog, {DialogType} from "./Dialog/Dialog";
+import Message from "./Message/Message";
+import Dialog from "./Dialog/Dialog";
+import {DialogType, MessageType} from "../../redux/types";
 
 type DialogsType = {
-  dialogs: DialogType[],
-  messages: MessageType[],
+  dialogs: Array<DialogType>,
+  messages: Array<MessageType>,
   newMessageText: string,
   updateNewMessageText: (text: string) => void,
   sendMessage: () => void,

@@ -1,5 +1,6 @@
 import React, {FC} from 'react';
 import styles from './Friends.module.css';
+import {FriendType} from "../../../redux/types";
 
 type FriendsType = { state: FriendType[] }
 const Friends: FC<FriendsType> = (props) => {
@@ -11,7 +12,6 @@ const Friends: FC<FriendsType> = (props) => {
   </div>)
 }
 
-export type FriendType = { id: number, name: string, src: string }
 const Friend: FC<FriendType> = (props) => {
   return (<div className={styles.item}>
     <div className={styles.boxImg}>
