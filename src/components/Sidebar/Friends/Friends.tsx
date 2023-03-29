@@ -1,8 +1,8 @@
-import React from 'react';
+import React, {FC} from 'react';
 import styles from './Friends.module.css';
 
-type FriendsType = {state: FriendType[]}
-const Friends = (props: FriendsType) => {
+type FriendsType = { state: FriendType[] }
+const Friends: FC<FriendsType> = (props) => {
   return (<div>
     <h3>Friends</h3>
     <div className={styles.list}>
@@ -11,8 +11,8 @@ const Friends = (props: FriendsType) => {
   </div>)
 }
 
-export type FriendType = {id: number, name: string,  src: string}
-const Friend = (props: FriendType) => {
+export type FriendType = { id: number, name: string, src: string }
+const Friend: FC<FriendType> = (props) => {
   return (<div className={styles.item}>
     <div className={styles.boxImg}>
       <img className={styles.img} src={props.src} alt={props.name}/>
@@ -22,7 +22,6 @@ const Friend = (props: FriendType) => {
     </div>
   </div>)
 }
-
 
 
 export default Friends;

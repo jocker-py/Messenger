@@ -1,21 +1,21 @@
-import React, {ChangeEvent} from 'react';
+import React, {ChangeEvent, FC} from 'react';
 import styles from './Dialogs.module.css';
 import Message, {MessageType} from "./Message/Message";
 import Dialog, {DialogType} from "./Dialog/Dialog";
 
 type DialogsType = {
-  dialogs:DialogType[],
+  dialogs: DialogType[],
   messages: MessageType[],
   newMessageText: string,
   updateNewMessageText: (text: string) => void,
   sendMessage: () => void,
 };
 
-const Dialogs = (props: DialogsType) => {
+const Dialogs: FC<DialogsType> = (props) => {
   const dialogsElements = props.dialogs.map(
-    ({id, name}) => <Dialog key={id} name={name} id={id} />);
+    ({id, name}) => <Dialog key={id} name={name} id={id}/>);
   const messagesElements = props.messages.map(
-    ({id, message}) => <Message key={id} message={message} id={id} />)
+    ({id, message}) => <Message key={id} message={message} id={id}/>)
   const messageText = props.newMessageText;
   const sendMessage = () => {
     props.sendMessage();
