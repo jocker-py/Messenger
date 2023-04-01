@@ -11,8 +11,7 @@ import Sidebar from "./components/Sidebar/Sidebar";
 import {Path} from "./config/enums";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 
-interface IApp { store: StoreType }
-const App: FC<IApp> = ({store}) => {
+const App: FC = () => {
   return (
     <BrowserRouter>
       <div className="app-wrapper">
