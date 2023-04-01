@@ -7,16 +7,17 @@ import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 import Footer from "./components/Footer/Footer";
-import Sidebar from "./components/Sidebar/Sidebar";
 import {Path} from "./config/enums";
+import SidebarContainer from "./components/Sidebar/SidebarContainer";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
+
 
 const App: FC = () => {
   return (
     <BrowserRouter>
       <div className="app-wrapper">
         <Header/>
-        <Sidebar/>
+        <SidebarContainer/>
         <div className="app-wrapper-content">
           <Route path={Path.PROFILE} render={() => <Profile/>}/>
           <Route path={Path.DIALOGS} render={() => <DialogsContainer/>}/>
