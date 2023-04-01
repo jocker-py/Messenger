@@ -4,8 +4,7 @@ import MyPosts from "./MyPosts";
 import {ProfileType} from "../../../redux/types";
 import {StoreContext} from "../../../redux/StoreContext";
 
-type MyPostsContainerType = { store: StoreType };
-const MyPostsContainer: FC<MyPostsContainerType> = (props) => {
+const MyPostsContainer: FC = () => {
   return <StoreContext.Consumer>
     {
       (store) => {

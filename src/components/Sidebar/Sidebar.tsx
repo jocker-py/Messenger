@@ -5,8 +5,7 @@ import Friends from "./Friends/Friends";
 import {SidebarType} from "../../redux/types";
 import {StoreContext} from "../../redux/StoreContext";
 
-type SidebarPropsType = { state: SidebarType };
-const Sidebar: FC<SidebarPropsType> = (props) => {
+const Sidebar: FC = () => {
   return (
     <StoreContext.Consumer>
       {store => {
