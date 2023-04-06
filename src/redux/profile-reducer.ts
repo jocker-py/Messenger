@@ -28,8 +28,7 @@ const profileReducer: ProfileReducerType = (state = initialState, action) => {
         message: state.newPostText,
         id: state.posts.length + 1,
       };
-      const oldPosts = state.posts.map(post => Object.assign({}, post));
-      const updatedPosts = [newPost, ...oldPosts];
+      const updatedPosts = [newPost, ...state.posts];
       return {...state, posts: updatedPosts, newPostText: ""};
     case ActionType.updateNewPost :
       return {...state, newPostText: action.text || ""};

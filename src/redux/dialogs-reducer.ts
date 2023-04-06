@@ -35,8 +35,7 @@ const dialogsReducer: DialogsReducerType = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.sendMessage:
       const newMessage = {message: state.newMessageText, id: state.messages.length + 1};
-      const oldMessages = state.messages.map(message => Object.assign({}, message));
-      return {...state, messages: [...oldMessages, newMessage], newMessageText: ""};
+      return {...state, messages: [...state.messages, newMessage], newMessageText: ""};
     case ActionType.updateNewMessageText:
       return {...state, newMessageText: action.text || ""};
     default :
