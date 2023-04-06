@@ -8,15 +8,15 @@ export const addPostActionCreator: addPostActionCreatorType = () => ({type: Acti
 export type updatePostActionCreatorType = (text: string) => IAction
 export const updateNewPostActionCreator: updatePostActionCreatorType = (text) => ({
   type: ActionType.updateNewPost,
-  text: text
+  text: text,
 });
 
 const initialState: ProfileType = {
   posts: [
-    {likes: 2, message: 'Hello, how are you?', id: 1},
-    {likes: 3, message: "I'm fine, what about you?", id: 2}
+    {likes: 2, message: "Hello, how are you?", id: 1},
+    {likes: 3, message: "I'm fine, what about you?", id: 2},
   ],
-  newPostText: ''
+  newPostText: "",
 };
 
 type ProfileReducerType = (state: ProfileType, action: IAction) => ProfileType;
@@ -27,16 +27,15 @@ const profileReducer: ProfileReducerType = (state = initialState, action) => {
         likes: 0,
         message: state.newPostText,
         id: state.posts.length + 1,
-      }
-      state.posts.push(newPost);
-      state.newPostText = '';
-      return state;
+      };
+      const oldPosts = state.posts.map(post => Object.assign({}, post));
+      const updatedPosts = [newPost, ...oldPosts];
+      return {...state, posts: updatedPosts, newPostText: ""};
     case ActionType.updateNewPost :
-      state.newPostText = action.text || '';
-      return state;
+      return {...state, newPostText: action.text || ""};
     default :
       return state;
   }
-}
+};
 
 export default profileReducer;
