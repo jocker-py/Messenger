@@ -1,11 +1,9 @@
-import React, {ChangeEvent, FC} from 'react';
+import React, {ChangeEvent, FC} from "react";
 import Post from "./Post/Post";
 import styles from "./MyPosts.module.css";
-import {PostType} from "../../../redux/types";
+import {ProfileType} from "../../../redux/types";
 
-type MyPostsType = {
-  posts: PostType[],
-  newPostText: string,
+type MyPostsType = ProfileType & {
   updatePostText: (text: string) => void,
   addPost: () => void,
 };
@@ -17,10 +15,10 @@ const MyPosts: FC<MyPostsType> = (props) => {
   const updatePostText = (e: ChangeEvent<HTMLTextAreaElement>) => {
     let text = e.currentTarget.value;
     props.updatePostText(text);
-  }
+  };
   const addPost = () => {
-    props.addPost()
-  }
+    props.addPost();
+  };
   return (
     <div className={styles.posts}>
       <h3>My posts</h3>
@@ -31,6 +29,6 @@ const MyPosts: FC<MyPostsType> = (props) => {
       <div className={styles.postList}>{postsElements}</div>
     </div>
   );
-}
+};
 
 export default MyPosts;
