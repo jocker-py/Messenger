@@ -1,30 +1,27 @@
-import React, {ChangeEvent, FC} from 'react';
-import styles from './Dialogs.module.css';
+import React, {ChangeEvent, FC} from "react";
+import styles from "./Dialogs.module.css";
 import Message from "./Message/Message";
 import Dialog from "./Dialog/Dialog";
-import {DialogType, MessageType} from "../../redux/types";
+import {DialogsType} from "../../redux/types";
 
-type DialogsType = {
-  dialogs: Array<DialogType>,
-  messages: Array<MessageType>,
-  newMessageText: string,
+type DialogsPropsType = DialogsType & {
   updateNewMessageText: (text: string) => void,
   sendMessage: () => void,
 };
 
-const Dialogs: FC<DialogsType> = (props) => {
+const Dialogs: FC<DialogsPropsType> = (props) => {
   const dialogsElements = props.dialogs.map(
     ({id, name}) => <Dialog key={id} name={name} id={id}/>);
   const messagesElements = props.messages.map(
-    ({id, message}) => <Message key={id} message={message} id={id}/>)
+    ({id, message}) => <Message key={id} message={message} id={id}/>);
   const messageText = props.newMessageText;
   const sendMessage = () => {
     props.sendMessage();
-  }
+  };
   const changeNewMessageText = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    let text = e.currentTarget.value
+    let text = e.currentTarget.value;
     props.updateNewMessageText(text);
-  }
+  };
 
   return (<div className={styles.dialogs}>
     <div className={styles.dialogList}>{dialogsElements}</div>
@@ -41,7 +38,7 @@ const Dialogs: FC<DialogsType> = (props) => {
         </div>
       </div>
     </div>
-  </div>)
-}
+  </div>);
+};
 
 export default Dialogs;
