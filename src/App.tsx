@@ -10,6 +10,7 @@ import Footer from "./components/Footer/Footer";
 import {Path} from "./config/enums";
 import SidebarContainer from "./components/Sidebar/SidebarContainer";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
+import UsersContainer from "./components/Users/UsersContainer";
 
 
 const App: FC = () => {
@@ -21,6 +22,7 @@ const App: FC = () => {
         <div className="app-wrapper-content">
           <Route path={Path.PROFILE} render={() => <Profile/>}/>
           <Route path={Path.DIALOGS} render={() => <DialogsContainer/>}/>
+          <Route path={Path.USERS} render={() => <UsersContainer/>}/>
           <Route path={Path.NEWS} render={() => <News/>}/>
           <Route path={Path.MUSIC} render={() => <Music/>}/>
           <Route path={Path.SETTINGS} render={() => <Settings/>}/>
