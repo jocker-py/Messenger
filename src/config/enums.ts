@@ -14,4 +14,6 @@ export enum ActionType {
   sendMessage = "SEND-MESSAGE",
   setUsers = "SET-USERS",
   toggleFollow = "TOGGLE-FOLLOW",
+  setTotalUsersCount = "SET-TOTAL-USERS-COUNT",
+  setCurrentPage = "SET-CURRENT-PAGE",
 }
