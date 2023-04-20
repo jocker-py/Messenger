@@ -1,0 +1,44 @@
+.pageList, .userList {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    flex-wrap: wrap;
+    padding: 10px;
+}
+
+.pageItem {
+    padding: 5px 10px;
+    background-color: black;
+    color: white;
+    border-radius: 3px;
+    transition: all 0.3s ease-in-out;
+}
+
+.pageItem:hover {
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+.selectedPageItem {
+    background-color: white;
+    color: black;
+    box-shadow: 0 3px 3px #30343f;
+    transition: all 0.3s ease-in-out;
+}
+
+.userItem {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    flex-wrap: wrap;
+    padding: 10px;
+    border-radius: 20px;
+    background-color: gray;
+}
+
+.userImg {
+    border-radius: 20px;
+}
