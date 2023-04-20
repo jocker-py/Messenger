@@ -16,6 +16,27 @@ export type DialogType = {
   name: string;
 }
 
+type PhotoType = {
+  small: null | string
+  large: null | string
+}
+
+export type UserType = {
+  followed: boolean
+  id: number
+  name: string
+  photos: PhotoType
+  status: null | string
+  uniqueUrlName: null | string
+}
+
+export type UsersType = {
+  users: Array<UserType>
+  totalUsersCount: number
+  currentPage: number
+  pageSize: number
+}
+
 export type NavbarLinkType = {
   title: string;
   href: string;
@@ -23,15 +44,15 @@ export type NavbarLinkType = {
 };
 
 export type FriendType = {
-  id: number,
-  name: string,
-  src: string
+  id: number;
+  name: string;
+  src: string;
 }
 
 
 export type ProfileType = {
-  posts: Array<PostType>,
-  newPostText: string
+  posts: Array<PostType>;
+  newPostText: string;
 };
 
 export type DialogsType = {
@@ -48,8 +69,17 @@ export type SidebarType = {
 export type StateType = {
   sidebar: SidebarType,
   profilePage: ProfileType,
-  dialogsPage: DialogsType
+  dialogsPage: DialogsType,
+  usersPage: UsersType,
 };
 
-export type IAction = { type: ActionType, text?: string }
+export type IAction = {
+  type: ActionType,
+  text?: string,
+  users?: Array<UserType>,
+  id?: number,
+  usersCount?: number
+  page?: number
+};
+
 export type DispatchType = (action: IAction) => void;
