@@ -2,11 +2,11 @@ import {ActionType} from "../config/enums";
 import {IAction, PostType, ProfileType} from "./types";
 
 
-export type addPostActionCreatorType = () => IAction;
-export const addPostActionCreator: addPostActionCreatorType = () => ({type: ActionType.addPost});
+export type AddPostType = () => IAction;
+export const addPost: AddPostType = () => ({type: ActionType.addPost});
 
-export type updatePostActionCreatorType = (text: string) => IAction
-export const updateNewPostActionCreator: updatePostActionCreatorType = (text) => ({
+export type UpdateNewPostTextType = (text: string) => IAction
+export const updateNewPostText: UpdateNewPostTextType = (text) => ({
   type: ActionType.updateNewPost,
   text: text,
 });

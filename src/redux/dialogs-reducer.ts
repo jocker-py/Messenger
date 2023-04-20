@@ -1,14 +1,14 @@
 import {ActionType} from "../config/enums";
 import {DialogsType, IAction} from "./types";
 
-export type updateNewMessageTextActionCreatorType = (text: string) => IAction;
-export const updateNewMessageTextActionCreator: updateNewMessageTextActionCreatorType = (text: string) => ({
+export type updateNewMessageTextType = (text: string) => IAction;
+export const updateNewMessageText: updateNewMessageTextType = (text: string) => ({
   type: ActionType.updateNewMessageText,
   text: text,
 });
 
-export type sendMessageActionCreatorType = () => IAction;
-export const sendMessageActionCreator: sendMessageActionCreatorType = () => ({type: ActionType.sendMessage});
+export type sendMessageType = () => IAction;
+export const sendMessage: sendMessageType = () => ({type: ActionType.sendMessage});
 
 const initialState: DialogsType = {
   dialogs: [

@@ -2,26 +2,26 @@ import {ActionType} from "../config/enums";
 import {IAction, UsersType, UserType} from "./types";
 
 
-type SetUsersACType = (users: Array<UserType>) => IAction;
-export const setUsersAC: SetUsersACType = (users) => ({type: ActionType.setUsers, users});
+type SetUsersType = (users: Array<UserType>) => IAction;
+export const setUsers: SetUsersType = (users) => ({type: ActionType.setUsers, users});
 
-type ToggleFollowACType = (id: number) => IAction;
-export const toggleFollowAC: ToggleFollowACType = (id) => ({type: ActionType.toggleFollow, id});
+type ToggleFollowType = (id: number) => IAction;
+export const toggleFollow: ToggleFollowType = (id) => ({type: ActionType.toggleFollow, id});
 
-type SetTotalUsersCountACType = (usersCount: number) => IAction;
-export const setTotalUsersCountAC: SetTotalUsersCountACType = (usersCount) => ({
+type SetTotalUsersCountType = (usersCount: number) => IAction;
+export const setTotalUsersCount: SetTotalUsersCountType = (usersCount) => ({
   type: ActionType.setTotalUsersCount,
   usersCount,
 });
 
-type SetCurrentPageACType = (page: number) => IAction;
-export const setCurrentPageAC: SetCurrentPageACType = (page) => ({
+type SetCurrentPageType = (page: number) => IAction;
+export const setCurrentPage: SetCurrentPageType = (page) => ({
   type: ActionType.setCurrentPage,
   page,
 });
 
-type ToggleFetchingACType = (isFetching: boolean) => IAction;
-export const toggleFetchingAC: ToggleFetchingACType = (isFetching) => ({
+type ToggleFetchingType = (isFetching: boolean) => IAction;
+export const toggleFetching: ToggleFetchingType = (isFetching) => ({
   type: ActionType.toggleFetching,
   isFetching,
 });
