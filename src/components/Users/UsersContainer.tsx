@@ -1,13 +1,13 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
 import Users from "./Users";
-import {DispatchType, StateType, UsersType, UserType} from "../../redux/types";
+import {StateType, UsersType} from "../../redux/types";
 import {
-  setCurrentPageAC,
-  setTotalUsersCountAC,
-  setUsersAC,
-  toggleFetchingAC,
-  toggleFollowAC,
+  setCurrentPage,
+  setTotalUsersCount,
+  setUsers,
+  toggleFetching,
+  toggleFollow,
 } from "../../redux/users-reducer";
 import axios from "axios";
 
@@ -60,19 +60,10 @@ const mapStateToProps: MapStateToPropsType = (state) => ({
   isFetching: state.usersPage.isFetching,
 });
 
-type MapDispatchToPropsType = (dispatch: DispatchType) => ({
-  setUsers: (users: Array<UserType>) => void
-  toggleFollow: (id: number) => void
-  setTotalUsersCount: (usersCount: number) => void
-  setCurrentPage: (page: number) => void
-})
-const mapDispatchToProps: MapDispatchToPropsType = (dispatch) => ({
-  setUsers: (users: Array<UserType>) => dispatch(setUsersAC(users)),
-  toggleFollow: (id: number) => dispatch(toggleFollowAC(id)),
-  setTotalUsersCount: (usersCount: number) => dispatch(setTotalUsersCountAC(usersCount)),
-  setCurrentPage: (page: number) => dispatch(setCurrentPageAC(page)),
-  toggleFetching: (isFetching: boolean) => dispatch(toggleFetchingAC(isFetching)),
-});
-
-
-export default connect<MapStateToPropsType, MapDispatchToPropsType>(mapStateToProps, mapDispatchToProps)(UsersContainer);
+export default connect(mapStateToProps, {
+  setUsers,
+  toggleFollow,
+  setTotalUsersCount,
+  setCurrentPage,
+  toggleFetching,
+})(UsersContainer);

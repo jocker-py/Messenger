@@ -4,7 +4,7 @@ import styles from "./MyPosts.module.css";
 import {ProfileType} from "../../../redux/types";
 
 type MyPostsType = ProfileType & {
-  updatePostText: (text: string) => void,
+  updateNewPostText: (text: string) => void,
   addPost: () => void,
 };
 
@@ -14,7 +14,7 @@ const MyPosts: FC<MyPostsType> = (props) => {
       <Post key={id} id={id} likes={likes} message={message}/>);
   const updatePostText = (e: ChangeEvent<HTMLTextAreaElement>) => {
     let text = e.currentTarget.value;
-    props.updatePostText(text);
+    props.updateNewPostText(text);
   };
   const addPost = () => {
     props.addPost();

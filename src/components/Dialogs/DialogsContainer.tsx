@@ -1,10 +1,11 @@
-import React, {FC} from "react";
-import {sendMessageActionCreator, updateNewMessageTextActionCreator} from "../../redux/dialogs-reducer";
+import React from "react";
+import {sendMessage, updateNewMessageText} from "../../redux/dialogs-reducer";
 import Dialogs from "./Dialogs";
-import {DispatchType, StateType} from "../../redux/types";
+import {DialogsType, StateType} from "../../redux/types";
 import {connect} from "react-redux";
 
-const mapStateToProps = (state: StateType) => {
+type MapStateToPropsType = (state: StateType) => DialogsType;
+const mapStateToProps: MapStateToPropsType = (state) => {
   return {
     dialogs: state.dialogsPage.dialogs,
     messages: state.dialogsPage.messages,
@@ -12,13 +13,7 @@ const mapStateToProps = (state: StateType) => {
   };
 };
 
-const mapDispatchToProps = (dispatch: DispatchType) => {
-  return {
-    sendMessage: () => dispatch(sendMessageActionCreator()),
-    updateNewMessageText: (text: string) => dispatch(updateNewMessageTextActionCreator(text)),
-  };
-};
 
-const DialogsContainer: FC = connect(mapStateToProps, mapDispatchToProps)(Dialogs);
+const DialogsContainer = connect(mapStateToProps, {sendMessage, updateNewMessageText})(Dialogs);
 
 export default DialogsContainer;

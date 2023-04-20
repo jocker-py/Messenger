@@ -1,19 +1,17 @@
 import React from "react";
-import {StateType} from "../../redux/types";
+import {SidebarType, StateType} from "../../redux/types";
 import {connect} from "react-redux";
 import Sidebar from "./Sidebar";
 
-const mapStateToProps = (state: StateType) => {
+type MapStateToPropsType = (state: StateType) => SidebarType
+const mapStateToProps: MapStateToPropsType = (state) => {
   return {
     navLinks: state.sidebar.navLinks,
     friends: state.sidebar.friends,
   };
 };
 
-const mapDispatchToProps = (dispatch: StateType) => {
-  return {};
-};
 
-const SidebarContainer = connect(mapStateToProps, mapDispatchToProps)(Sidebar);
+const SidebarContainer = connect(mapStateToProps, {})(Sidebar);
 
 export default SidebarContainer;
