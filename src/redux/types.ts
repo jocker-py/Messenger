@@ -35,6 +35,7 @@ export type UsersType = {
   totalUsersCount: number
   currentPage: number
   pageSize: number
+  isFetching: boolean
 }
 
 export type NavbarLinkType = {
@@ -78,8 +79,9 @@ export type IAction = {
   text?: string,
   users?: Array<UserType>,
   id?: number,
-  usersCount?: number
-  page?: number
+  usersCount?: number,
+  page?: number,
+  isFetching?: boolean,
 };
 
 export type DispatchType = (action: IAction) => void;

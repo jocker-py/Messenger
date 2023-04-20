@@ -16,4 +16,5 @@ export enum ActionType {
   toggleFollow = "TOGGLE-FOLLOW",
   setTotalUsersCount = "SET-TOTAL-USERS-COUNT",
   setCurrentPage = "SET-CURRENT-PAGE",
+  toggleFetching = "TOGGLE-FETCHING",
 }

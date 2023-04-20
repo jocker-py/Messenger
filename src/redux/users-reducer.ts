@@ -8,16 +8,22 @@ export const setUsersAC: SetUsersACType = (users) => ({type: ActionType.setUsers
 type ToggleFollowACType = (id: number) => IAction;
 export const toggleFollowAC: ToggleFollowACType = (id) => ({type: ActionType.toggleFollow, id});
 
-type SetTotalUsersCountAC = (usersCount: number) => IAction;
-export const setTotalUsersCountAC: SetTotalUsersCountAC = (usersCount) => ({
+type SetTotalUsersCountACType = (usersCount: number) => IAction;
+export const setTotalUsersCountAC: SetTotalUsersCountACType = (usersCount) => ({
   type: ActionType.setTotalUsersCount,
   usersCount,
 });
 
-type SetCurrentPageAC = (page: number) => IAction;
-export const setCurrentPageAC: SetCurrentPageAC = (page) => ({
+type SetCurrentPageACType = (page: number) => IAction;
+export const setCurrentPageAC: SetCurrentPageACType = (page) => ({
   type: ActionType.setCurrentPage,
   page,
+});
+
+type ToggleFetchingACType = (isFetching: boolean) => IAction;
+export const toggleFetchingAC: ToggleFetchingACType = (isFetching) => ({
+  type: ActionType.toggleFetching,
+  isFetching,
 });
 
 const initialState: UsersType = {
@@ -25,12 +31,13 @@ const initialState: UsersType = {
   totalUsersCount: 0,
   currentPage: 1,
   pageSize: 10,
+  isFetching: false,
 };
 
 type UsersReducerType = (state: UsersType, action: IAction) => UsersType;
 const usersReducer: UsersReducerType = (
   state = initialState,
-  {id, type, users, usersCount, page},
+  {id, type, users, usersCount, page, isFetching},
 ) => {
   switch (type) {
     case ActionType.setUsers:
@@ -44,6 +51,8 @@ const usersReducer: UsersReducerType = (
       return usersCount ? {...state, totalUsersCount: usersCount} : state;
     case ActionType.setCurrentPage:
       return page ? {...state, currentPage: page} : state;
+    case ActionType.toggleFetching:
+      return typeof isFetching === "boolean" ? {...state, isFetching} : state;
     default :
       return state;
   }

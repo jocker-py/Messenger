@@ -2,6 +2,7 @@ import React, {FC} from "react";
 import userPhoto from "../../assets/user.png";
 import s from "./Users.module.css";
 import {UsersContainerPropsType} from "./UsersContainer";
+import {Loader} from "../common/Loader/Loader";
 
 type UsersPropsType = UsersContainerPropsType & {
   onPostChanged: (page: number) => void;
@@ -30,8 +31,14 @@ const Users: FC<UsersPropsType> = (props) => {
                         : s.pageItem}>{page}</div>);
   return (
     <>
-      <div className={s.userList}>{usersElements}</div>
-      <div className={s.pageList}>{pages && pagesElements}</div>
+      {
+        props.isFetching ?
+          <Loader/> :
+          <>
+            <div className={s.userList}>{usersElements}</div>
+            <div className={s.pageList}>{pages && pagesElements}</div>
+          </>
+      }
     </>
   );
 };
