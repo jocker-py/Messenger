@@ -14,15 +14,12 @@ type ProfileInfoType = {
 }
 
 const ProfileInfo: FC<ProfileInfoType> = ({userProfile}) => {
-  if (!userProfile) {
-    return <Loader/>;
-  }
+  if (!userProfile) return <div></div>;
   const icons: { [key: string]: string } = {react, redux, ts, js, css};
   const {
     userId, lookingForAJob, lookingForAJobDescription,
     fullName, contacts, photos,
   } = userProfile;
-  console.log(userProfile);
   const wishlist = lookingForAJobDescription && lookingForAJobDescription.split(" ").map(item => {
     item = item.trim().toLowerCase().replaceAll(/\W/g, "");
     if (item in icons) {
