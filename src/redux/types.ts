@@ -76,6 +76,13 @@ export type ProfileType = {
   userProfile: UserProfileType;
 };
 
+export type AuthType = {
+  userId: number | null;
+  login: string | null;
+  email: string | null;
+  isAuth: boolean;
+}
+
 export type DialogsType = {
   messages: Array<MessageType>,
   dialogs: Array<DialogType>,
@@ -92,6 +99,7 @@ export type StateType = {
   profilePage: ProfileType,
   dialogsPage: DialogsType,
   usersPage: UsersType,
+  auth: AuthType,
 };
 
 export type IAction = {
@@ -103,4 +111,7 @@ export type IAction = {
   page?: number,
   isFetching?: boolean,
   userProfile?: UserProfileType
+  login?: string,
+  email?: string,
+  userId?: number,
 };
