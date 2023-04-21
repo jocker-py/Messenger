@@ -1,26 +1,27 @@
-import React, {FC} from "react";
-import userPhoto from "../../assets/user.png";
+import React, {FC, MouseEvent} from "react";
 import s from "./Users.module.css";
 import {UsersContainerPropsType} from "./UsersContainer";
 import {Loader} from "../common/Loader/Loader";
+import {Path} from "../../config/enums";
+import User from "./User";
 
 type UsersPropsType = UsersContainerPropsType & {
   onPostChanged: (page: number) => void;
 }
 
 const Users: FC<UsersPropsType> = (props) => {
-  const usersElements = props.users.map((user) => (
-    <div key={user.id} className={s.userItem}>
-      <div>{user.name}</div>
-      <button onClick={() => props.toggleFollow(user.id)}>
-        {user.followed ? "follow" : "unfollow"}
-      </button>
-      <div>
-        <img className={s.userImg} src={user.photos.small || userPhoto} alt="userLogo"/>
-      </div>
-      <div>{user.uniqueUrlName}</div>
-      <div>{user.status}</div>
-    </div>));
+  const usersElements = props.users.map((user) => {
+    const pathToUser = `${Path.PROFILE}/${user.id}`;
+    const toggleFollow = (e: MouseEvent<HTMLButtonElement>) => {
+      e.preventDefault();
+      props.toggleFollow(user.id);
+    };
+    return <User key={user.id}
+                 className={s.userItem}
+                 user={user}
+                 toggleFollow={toggleFollow}
+                 path={pathToUser}/>
+  });
   const pages = Math.ceil(props.totalUsersCount / props.pageSize);
   const pagesElements = pages && new Array(pages).slice(0, 5).fill(1)
     .map((page, idx) => page + idx)
