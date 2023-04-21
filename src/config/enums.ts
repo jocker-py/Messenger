@@ -19,10 +19,12 @@ export enum ActionType {
   setCurrentPage = "SET-CURRENT-PAGE",
   toggleFetching = "TOGGLE-FETCHING",
   setUserProfile = "SET-USER-PROFILE",
+  setAuthData = "SET-AUTH-DATA",
 }
 
 export enum LinkPath {
   // main = "https://social-network.samuraijs.com/api/1.0",
   users = "https://social-network.samuraijs.com/api/1.0/users/",
-  userProfile = "https://social-network.samuraijs.com/api/1.0/profile/"
+  userProfile = "https://social-network.samuraijs.com/api/1.0/profile/",
+  authMe = "https://social-network.samuraijs.com/api/1.0/auth/me",
 }
