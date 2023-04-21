@@ -3,12 +3,12 @@ import Profile from "./Profile";
 import axios from "axios";
 import {LinkPath} from "../../config/enums";
 import {setUserProfile} from "../../redux/profile-reducer";
-import {ProfileType, StateType} from "../../redux/types";
+import {ProfileType, StateType, UserProfileType} from "../../redux/types";
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
 
 type ProfileContainerPropsType = ProfileType & {
-  setUserProfile: (userProfile: ProfileType) => void
+  setUserProfile: (userProfile: UserProfileType) => void
   match: {
     params: {
       userId: number;
@@ -22,6 +22,10 @@ class ProfileContainer extends Component<ProfileContainerPropsType> {
     axios
       .get(LinkPath.userProfile + userId)
       .then(res => this.props.setUserProfile(res.data));
+  }
+
+  componentWillUnmount() {
+    this.props.setUserProfile(null);
   }
 
   render() {
