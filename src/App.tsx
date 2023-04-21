@@ -20,7 +20,8 @@ const App: FC = () => {
         <Header/>
         <SidebarContainer/>
         <div className="app-wrapper-content">
-          <Route path={Path.PROFILE} render={() => <ProfileContainer/>}/>
+          <Route path={Path.USER_PROFILE} render={() => <ProfileContainer/>}/>
+          {/*<Route path={Path.PROFILE} render={() => <ProfileContainer/>}/>*/}
           <Route path={Path.DIALOGS} render={() => <DialogsContainer/>}/>
           <Route path={Path.USERS} render={() => <UsersContainer/>}/>
           <Route path={Path.NEWS} render={() => <News/>}/>
