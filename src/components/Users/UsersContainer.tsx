@@ -10,6 +10,7 @@ import {
   toggleFollow,
 } from "../../redux/users-reducer";
 import axios from "axios";
+import {LinkPath} from "../../config/enums";
 
 export type UsersContainerPropsType = UsersType & {
   setUsers: (users: UsersType) => void;
@@ -25,7 +26,7 @@ class UsersContainer extends Component<UsersContainerPropsType> {
     const count = this.props.pageSize;
     this.props.toggleFetching(true);
     axios
-      .get(`https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${count}`)
+      .get(`${LinkPath.users}?page=${page}&count=${count}`)
       .then((res) => {
         this.props.setUsers(res.data.items);
         this.props.setTotalUsersCount(res.data.totalCount);
