@@ -5,6 +5,7 @@ import {LinkPath} from "../../config/enums";
 import {setUserProfile} from "../../redux/profile-reducer";
 import {ProfileType, StateType} from "../../redux/types";
 import {connect} from "react-redux";
+import {withRouter} from "react-router-dom";
 
 type ProfileContainerPropsType = ProfileType & {
   setUserProfile: (userProfile: ProfileType) => void
@@ -31,4 +32,6 @@ const mapStateToProps: MapStateToPropsType = (state) => {
   };
 };
 
-export default connect(mapStateToProps, {setUserProfile})(ProfileContainer);
+const withRouterProfileContainer = withRouter(ProfileContainer);
+
+export default connect(mapStateToProps, {setUserProfile})(withRouterProfileContainer);
