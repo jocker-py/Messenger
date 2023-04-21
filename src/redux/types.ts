@@ -50,10 +50,30 @@ export type FriendType = {
   src: string;
 }
 
+type ContactsType = {
+  github: string
+  vk: string
+  facebook: string
+  instagram: string
+  twitter: string
+  website: string
+  youtube: string
+  mainLink: string
+}
+export type UserProfileType = null | {
+  aboutMe: string
+  userId: number
+  lookingForAJob: boolean
+  lookingForAJobDescription: string
+  fullName: string
+  contacts: ContactsType
+  photos: PhotoType
+}
 
 export type ProfileType = {
   posts: Array<PostType>;
   newPostText: string;
+  userProfile: UserProfileType;
 };
 
 export type DialogsType = {
@@ -82,6 +102,5 @@ export type IAction = {
   usersCount?: number,
   page?: number,
   isFetching?: boolean,
+  userProfile?: UserProfileType
 };
-
-export type DispatchType = (action: IAction) => void;
