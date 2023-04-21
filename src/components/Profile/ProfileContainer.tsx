@@ -9,12 +9,18 @@ import {withRouter} from "react-router-dom";
 
 type ProfileContainerPropsType = ProfileType & {
   setUserProfile: (userProfile: ProfileType) => void
+  match: {
+    params: {
+      userId: number;
+    }
+  }
 }
 
 class ProfileContainer extends Component<ProfileContainerPropsType> {
   componentDidMount() {
+    const userId = this.props.match.params.userId || 2;
     axios
-      .get(`${LinkPath.userProfile}2`)
+      .get(LinkPath.userProfile + userId)
       .then(res => this.props.setUserProfile(res.data));
   }
 
