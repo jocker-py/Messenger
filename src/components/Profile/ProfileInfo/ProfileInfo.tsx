@@ -1,7 +1,6 @@
 import React, {FC} from "react";
 import styles from "./ProfileInfo.module.css";
 import {UserProfileType} from "../../../redux/types";
-import {Loader} from "../../common/Loader/Loader";
 import avatar from "../../../assets/user.png";
 import react from "../../../assets/react.png";
 import redux from "../../../assets/redux.png";
