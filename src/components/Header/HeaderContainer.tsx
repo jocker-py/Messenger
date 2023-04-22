@@ -4,7 +4,7 @@ import {AuthType, StateType} from "../../redux/types";
 import {setAuthData} from "../../redux/auth-reducer";
 import {connect} from "react-redux";
 import axios from "axios";
-import {LinkPath} from "../../config/enums";
+import {EndPoint} from "../../config/enums";
 
 export type HeaderPropsType = AuthType & {
   setAuthData: (userId: number, email: string, login: string) => void
@@ -12,7 +12,7 @@ export type HeaderPropsType = AuthType & {
 
 class HeaderContainer extends Component<HeaderPropsType> {
   componentDidMount() {
-    axios.get(LinkPath.authMe, {
+    axios.get(EndPoint.authMe, {
       withCredentials: true,
     }).then(res => {
       console.log(res);

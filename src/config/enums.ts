@@ -22,7 +22,7 @@ export enum ActionType {
   setAuthData = "SET-AUTH-DATA",
 }
 
-export enum LinkPath {
+export enum EndPoint {
   // main = "https://social-network.samuraijs.com/api/1.0",
   users = "https://social-network.samuraijs.com/api/1.0/users/",
   userProfile = "https://social-network.samuraijs.com/api/1.0/profile/",

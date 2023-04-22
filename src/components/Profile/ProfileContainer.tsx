@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import Profile from "./Profile";
 import axios from "axios";
-import {LinkPath} from "../../config/enums";
+import {EndPoint} from "../../config/enums";
 import {setUserProfile} from "../../redux/profile-reducer";
 import {ProfileType, StateType, UserProfileType} from "../../redux/types";
 import {connect} from "react-redux";
@@ -20,7 +20,7 @@ class ProfileContainer extends Component<ProfileContainerPropsType> {
   componentDidMount() {
     const userId = this.props.match.params.userId || 2;
     axios
-      .get(LinkPath.userProfile + userId)
+      .get(EndPoint.userProfile + userId)
       .then(res => this.props.setUserProfile(res.data));
   }
 
