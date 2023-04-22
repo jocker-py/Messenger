@@ -3,8 +3,7 @@ import Header from "./Header";
 import {AuthType, StateType} from "../../redux/types";
 import {setAuthData} from "../../redux/auth-reducer";
 import {connect} from "react-redux";
-import axios from "axios";
-import {EndPoint} from "../../config/enums";
+import {authAPI} from "../../api/api";
 
 export type HeaderPropsType = AuthType & {
   setAuthData: (userId: number, email: string, login: string) => void
@@ -12,14 +11,10 @@ export type HeaderPropsType = AuthType & {
 
 class HeaderContainer extends Component<HeaderPropsType> {
   componentDidMount() {
-    axios.get(EndPoint.authMe, {
-      withCredentials: true,
-    }).then(res => {
-      if (res.data.resultCode === 0) {
-        const {id, login, email} = res.data.data;
-        this.props.setAuthData(id, login, email);
-      }
-    });
+    authAPI
+      .setAuthMe()
+      .then(data => data &&
+        this.props.setAuthData(data.userId, data.email, data.login));
   }
 
   render() {
@@ -35,4 +30,4 @@ const mapStateToProps: MapStateToPropsType = (state) => ({
   isAuth: state.auth.isAuth,
 });
 
-export default connect(mapStateToProps, {setAuthData})(HeaderContainer);
+export default connect(mapStateToProps, {setAuthData})(HeaderContainer)

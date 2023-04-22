@@ -10,8 +10,7 @@ import {
   follow,
   unfollow,
 } from "../../redux/users-reducer";
-import axios from "axios";
-import {EndPoint} from "../../config/enums";
+import {usersAPI} from "../../api/api";
 
 export type UsersContainerPropsType = UsersType & {
   setUsers: (users: UsersType) => void;
@@ -23,27 +22,24 @@ export type UsersContainerPropsType = UsersType & {
 }
 
 class UsersContainer extends Component<UsersContainerPropsType> {
-  getUsers(page: number) {
-    const count = this.props.pageSize;
+  getUsers(page: number, count: number) {
     this.props.toggleFetching(true);
-    axios
-      .get(`${EndPoint.users}?page=${page}&count=${count}`, {
-        withCredentials: true,
-      })
-      .then((res) => {
-        this.props.setUsers(res.data.items);
-        this.props.setTotalUsersCount(res.data.totalCount);
+    usersAPI
+      .getUsers(page, count)
+      .then(res => {
+        this.props.setUsers(res.items);
+        this.props.setTotalUsersCount(res.totalCount);
         this.props.toggleFetching(false);
       });
   }
 
   componentDidMount() {
-    this.getUsers(this.props.currentPage);
+    this.getUsers(this.props.currentPage, this.props.pageSize);
   }
 
   onPostChanged = (page: number) => {
-    this.getUsers(page);
     this.props.setCurrentPage(page);
+    this.getUsers(page, this.props.pageSize);
   };
 
   render() {

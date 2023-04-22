@@ -1,11 +1,10 @@
 import React, {Component} from "react";
 import Profile from "./Profile";
-import axios from "axios";
-import {EndPoint} from "../../config/enums";
 import {setUserProfile} from "../../redux/profile-reducer";
 import {ProfileType, StateType, UserProfileType} from "../../redux/types";
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
+import {usersAPI} from "../../api/api";
 
 type ProfileContainerPropsType = ProfileType & {
   setUserProfile: (userProfile: UserProfileType) => void
@@ -19,11 +18,9 @@ type ProfileContainerPropsType = ProfileType & {
 class ProfileContainer extends Component<ProfileContainerPropsType> {
   componentDidMount() {
     const userId = this.props.match.params.userId || 2;
-    axios
-      .get(EndPoint.userProfile + userId, {
-        withCredentials: true,
-      })
-      .then(res => this.props.setUserProfile(res.data));
+    usersAPI
+      .getProfile(userId)
+      .then(data => this.props.setUserProfile(data));
   }
 
   componentWillUnmount() {
