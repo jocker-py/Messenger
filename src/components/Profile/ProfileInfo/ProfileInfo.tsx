@@ -7,13 +7,14 @@ import redux from "../../../assets/redux.png";
 import ts from "../../../assets/ts.png";
 import css from "../../../assets/css.png";
 import js from "../../../assets/js.png";
+import {v1} from "uuid";
 
 type ProfileInfoType = {
   userProfile: UserProfileType
 }
 
 const ProfileInfo: FC<ProfileInfoType> = ({userProfile}) => {
-  if (!userProfile) return <div></div>;
+  if (!userProfile) return <div/>;
   const icons: { [key: string]: string } = {react, redux, ts, js, css};
   const {
     userId, lookingForAJob, lookingForAJobDescription,
@@ -22,7 +23,7 @@ const ProfileInfo: FC<ProfileInfoType> = ({userProfile}) => {
   const wishlist = lookingForAJobDescription && lookingForAJobDescription.split(" ").map(item => {
     item = item.trim().toLowerCase().replaceAll(/\W/g, "");
     if (item in icons) {
-      return <li><img className={styles.wishImg} src={icons[item]} alt={item}/></li>;
+      return <li key={v1()}><img className={styles.wishImg} src={icons[item]} alt={item}/></li>;
     }
     return <li>{item}</li>;
   });
