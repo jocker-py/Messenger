@@ -15,7 +15,6 @@ class HeaderContainer extends Component<HeaderPropsType> {
     axios.get(EndPoint.authMe, {
       withCredentials: true,
     }).then(res => {
-      console.log(res);
       if (res.data.resultCode === 0) {
         const {id, login, email} = res.data.data;
         this.props.setAuthData(id, login, email);
