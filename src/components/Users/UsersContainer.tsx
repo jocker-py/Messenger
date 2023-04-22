@@ -7,26 +7,29 @@ import {
   setTotalUsersCount,
   setUsers,
   toggleFetching,
-  toggleFollow,
+  follow,
+  unfollow,
 } from "../../redux/users-reducer";
 import axios from "axios";
-import {EndPoint, LinkPath} from "../../config/enums";
+import {EndPoint} from "../../config/enums";
 
 export type UsersContainerPropsType = UsersType & {
   setUsers: (users: UsersType) => void;
-  toggleFollow: (id: number) => void;
+  follow: (id: number) => void;
+  unfollow: (id: number) => void;
   setTotalUsersCount: (usersCount: number) => void
   setCurrentPage: (page: number) => void
   toggleFetching: (isFetching: boolean) => void
 }
 
 class UsersContainer extends Component<UsersContainerPropsType> {
-  componentDidMount() {
-    const page = this.props.currentPage;
+  getUsers(page: number) {
     const count = this.props.pageSize;
     this.props.toggleFetching(true);
     axios
-      .get(`${EndPoint.users}?page=${page}&count=${count}`)
+      .get(`${EndPoint.users}?page=${page}&count=${count}`, {
+        withCredentials: true,
+      })
       .then((res) => {
         this.props.setUsers(res.data.items);
         this.props.setTotalUsersCount(res.data.totalCount);
@@ -34,17 +37,13 @@ class UsersContainer extends Component<UsersContainerPropsType> {
       });
   }
 
+  componentDidMount() {
+    this.getUsers(this.props.currentPage);
+  }
+
   onPostChanged = (page: number) => {
-    const count = this.props.pageSize;
+    this.getUsers(page);
     this.props.setCurrentPage(page);
-    this.props.toggleFetching(true);
-    axios
-      .get(`${EndPoint.users}?page=${page}&count=${count}`)
-      .then((res) => {
-        this.props.setUsers(res.data.items);
-        this.props.setTotalUsersCount(res.data.totalCount);
-        this.props.toggleFetching(false);
-      });
   };
 
   render() {
@@ -63,7 +62,8 @@ const mapStateToProps: MapStateToPropsType = (state) => ({
 
 export default connect(mapStateToProps, {
   setUsers,
-  toggleFollow,
+  follow,
+  unfollow,
   setTotalUsersCount,
   setCurrentPage,
   toggleFetching,
