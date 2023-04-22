@@ -5,8 +5,11 @@ import {IAction, UsersType, UserType} from "./types";
 type SetUsersType = (users: Array<UserType>) => IAction;
 export const setUsers: SetUsersType = (users) => ({type: ActionType.setUsers, users});
 
-type ToggleFollowType = (id: number) => IAction;
-export const toggleFollow: ToggleFollowType = (id) => ({type: ActionType.toggleFollow, id});
+type FollowType = (id: number) => IAction;
+export const follow: FollowType = (id) => ({type: ActionType.follow, id});
+
+type UnfollowType = (id: number) => IAction;
+export const unfollow: UnfollowType = (id) => ({type: ActionType.unfollow, id});
 
 type SetTotalUsersCountType = (usersCount: number) => IAction;
 export const setTotalUsersCount: SetTotalUsersCountType = (usersCount) => ({
@@ -42,10 +45,15 @@ const usersReducer: UsersReducerType = (
   switch (type) {
     case ActionType.setUsers:
       return users ? {...state, users: [...users]} : state;
-    case ActionType.toggleFollow:
+    case ActionType.follow:
       return {
         ...state, users: state.users.map(user => user.id === id ?
-          {...user, followed: !user.followed} : user),
+          {...user, followed: true} : user),
+      };
+    case ActionType.unfollow:
+      return {
+        ...state, users: state.users.map(user => user.id === id ?
+          {...user, followed: false} : user),
       };
     case ActionType.setTotalUsersCount:
       return usersCount ? {...state, totalUsersCount: usersCount} : state;
