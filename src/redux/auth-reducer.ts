@@ -1,8 +1,8 @@
 import {ActionType} from "../config/enums";
 import {AuthType, IAction} from "./types";
 
-type SetAuthDataType = (userId: number, login: string, email: string) => IAction;
-export const setAuthData: SetAuthDataType = (userId, login, email) => ({
+type SetAuthDataType = (userId: number, email: string, login: string) => IAction;
+export const setAuthData: SetAuthDataType = (userId, email, login) => ({
   type: ActionType.setAuthData,
   userId,
   login,
