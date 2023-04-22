@@ -24,9 +24,9 @@ export enum ActionType {
 }
 
 export enum EndPoint {
-  // main = "https://social-network.samuraijs.com/api/1.0",
-  users = "https://social-network.samuraijs.com/api/1.0/users/",
-  userProfile = "https://social-network.samuraijs.com/api/1.0/profile/",
-  authMe = "https://social-network.samuraijs.com/api/1.0/auth/me",
-  follow = "https://social-network.samuraijs.com/api/1.0/follow/",
+  root = "https://social-network.samuraijs.com/api/1.0/",
+  users = "users/",
+  profile = "profile/",
+  authMe = "auth/me",
+  follow = "follow/",
 }
