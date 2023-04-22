@@ -14,7 +14,8 @@ export enum ActionType {
   updateNewMessageText = "UPDATE-NEW-MESSAGE-TEXT",
   sendMessage = "SEND-MESSAGE",
   setUsers = "SET-USERS",
-  toggleFollow = "TOGGLE-FOLLOW",
+  follow = "FOLLOW",
+  unfollow = "UNFOLLOW",
   setTotalUsersCount = "SET-TOTAL-USERS-COUNT",
   setCurrentPage = "SET-CURRENT-PAGE",
   toggleFetching = "TOGGLE-FETCHING",
@@ -27,4 +28,5 @@ export enum EndPoint {
   users = "https://social-network.samuraijs.com/api/1.0/users/",
   userProfile = "https://social-network.samuraijs.com/api/1.0/profile/",
   authMe = "https://social-network.samuraijs.com/api/1.0/auth/me",
+  follow = "https://social-network.samuraijs.com/api/1.0/follow/",
 }
