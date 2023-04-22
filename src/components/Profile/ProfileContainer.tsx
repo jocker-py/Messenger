@@ -20,7 +20,9 @@ class ProfileContainer extends Component<ProfileContainerPropsType> {
   componentDidMount() {
     const userId = this.props.match.params.userId || 2;
     axios
-      .get(EndPoint.userProfile + userId)
+      .get(EndPoint.userProfile + userId, {
+        withCredentials: true,
+      })
       .then(res => this.props.setUserProfile(res.data));
   }
 
@@ -31,7 +33,7 @@ class ProfileContainer extends Component<ProfileContainerPropsType> {
   render() {
     return <Profile {...this.props}/>;
   }
-};
+}
 
 type MapStateToPropsType = (state: StateType) => ProfileType;
 const mapStateToProps: MapStateToPropsType = (state) => {
