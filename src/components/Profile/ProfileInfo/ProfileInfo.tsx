@@ -8,6 +8,7 @@ import ts from "../../../assets/ts.png";
 import css from "../../../assets/css.png";
 import js from "../../../assets/js.png";
 import {v1} from "uuid";
+import ProfileStatus from "./ProfileStatus/ProfileStatus";
 
 type ProfileInfoType = {
   userProfile: UserProfileType
@@ -16,6 +17,7 @@ type ProfileInfoType = {
 const ProfileInfo: FC<ProfileInfoType> = ({userProfile}) => {
   if (!userProfile) return <div/>;
   const icons: { [key: string]: string } = {react, redux, ts, js, css};
+  // TODO: contacts
   const {
     userId, lookingForAJob, lookingForAJobDescription,
     fullName, contacts, photos,
@@ -36,6 +38,7 @@ const ProfileInfo: FC<ProfileInfoType> = ({userProfile}) => {
       </div>
       <div className={styles.description}>
         <h2>{fullName}</h2>
+        <ProfileStatus status={"Hello, my friends"}/>
         <div>{userId}</div>
         <button>{lookingForAJob ? "I'm looking for a job" : "I'm happy working for company"}</button>
         {
