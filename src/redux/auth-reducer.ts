@@ -1,5 +1,7 @@
 import {ActionType} from "../config/enums";
 import {AuthType, IAction} from "./types";
+import {authAPI} from "../api/api";
+import {Dispatch} from "redux";
 
 type SetAuthDataType = (userId: number, email: string, login: string) => IAction;
 export const setAuthData: SetAuthDataType = (userId, email, login) => ({
@@ -32,6 +34,15 @@ const authReducer: AuthReducerType = (
     default :
       return state;
   }
+};
+
+export const setAuthMe = () => {
+  return (dispatch: Dispatch<IAction>) => {
+    authAPI
+      .setAuthMe()
+      .then(data => data &&
+        dispatch(setAuthData(data.userId, data.email, data.login)));
+  };
 };
 
 export default authReducer;
