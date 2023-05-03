@@ -20,16 +20,16 @@ const Users: FC<UsersPropsType> = (props) => {
       usersAPI
         .follow(user.id)
         .then(res => res && props.follow(user.id))
-        .then(() => props.togglePendingFollow(user.id, false))
+        .then(() => props.togglePendingFollow(user.id, false));
     };
     const unfollow = () => {
       props.togglePendingFollow(user.id, true);
       usersAPI
         .unfollow(user.id)
         .then(res => res && props.unfollow(user.id))
-        .then(() => props.togglePendingFollow(user.id, false))
+        .then(() => props.togglePendingFollow(user.id, false));
     };
-    const disableUserButton = props.isToggleFollowing.some((id) => user.id === id)
+    const disableUserButton = props.isToggleFollowing.some((id) => user.id === id);
     return <User key={user.id} className={s.userItem} user={user}
                  follow={follow} unfollow={unfollow} path={pathToUser}
                  disabled={disableUserButton}/>;
