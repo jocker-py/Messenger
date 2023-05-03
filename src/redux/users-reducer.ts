@@ -29,18 +29,26 @@ export const toggleFetching: ToggleFetchingType = (isFetching) => ({
   isFetching,
 });
 
+type TogglePendingFollow = (userId: number, isPending: boolean) => IAction;
+export const togglePendingFollow: TogglePendingFollow = (userId, isPending) => ({
+  type: ActionType.togglePendingFollow,
+  userId,
+  isPending,
+});
+
 const initialState: UsersType = {
   users: [],
   totalUsersCount: 0,
   currentPage: 1,
   pageSize: 10,
   isFetching: false,
+  isToggleFollowing: [],
 };
 
 type UsersReducerType = (state: UsersType, action: IAction) => UsersType;
 const usersReducer: UsersReducerType = (
   state = initialState,
-  {id, type, users, usersCount, page, isFetching},
+  {id, type, users, usersCount, page, isFetching, isPending, userId},
 ) => {
   switch (type) {
     case ActionType.setUsers:
@@ -61,6 +69,14 @@ const usersReducer: UsersReducerType = (
       return page ? {...state, currentPage: page} : state;
     case ActionType.toggleFetching:
       return typeof isFetching === "boolean" ? {...state, isFetching} : state;
+    case ActionType.togglePendingFollow:
+      if (userId) {
+        return isPending ?
+          {...state, isToggleFollowing: [...state.isToggleFollowing, userId]} :
+          {...state, isToggleFollowing: state.isToggleFollowing.filter(id => id !== userId)};
+      }
+      return state;
+
     default :
       return state;
   }
