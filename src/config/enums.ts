@@ -6,6 +6,7 @@ export enum Path {
   NEWS = "/news",
   USERS = "/users",
   USER_PROFILE = "/profile/:userId?",
+  LOGIN = "/login",
 }
 
 export enum ActionType {
