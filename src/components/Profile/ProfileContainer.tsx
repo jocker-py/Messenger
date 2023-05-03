@@ -6,18 +6,17 @@ import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
 import {usersAPI} from "../../api/api";
 
-type ProfileContainerPropsType = ProfileType & {
-  setUserProfile: (userProfile: UserProfileType) => void
+type ProfileContainerPropsType = MapStateToPropsType & MapDispatchToPropsType & {
   match: {
     params: {
-      userId: number;
+      userId: number
     }
   }
-}
+};
 
 class ProfileContainer extends Component<ProfileContainerPropsType> {
   componentDidMount() {
-    const userId = this.props.match.params.userId || 2;
+    const userId = this.props.match.params.userId || 343434;
     usersAPI
       .getProfile(userId)
       .then(data => this.props.setUserProfile(data));
@@ -32,8 +31,8 @@ class ProfileContainer extends Component<ProfileContainerPropsType> {
   }
 }
 
-type MapStateToPropsType = (state: StateType) => ProfileType;
-const mapStateToProps: MapStateToPropsType = (state) => {
+type MapStateToPropsType = ProfileType;
+const mapStateToProps = (state: StateType): MapStateToPropsType => {
   return {
     posts: state.profilePage.posts,
     newPostText: state.profilePage.newPostText,
@@ -41,6 +40,11 @@ const mapStateToProps: MapStateToPropsType = (state) => {
   };
 };
 
+type MapDispatchToPropsType = {
+  setUserProfile: (userProfile: UserProfileType) => void
+}
+
+// @ts-ignore
 const withRouterProfileContainer = withRouter(ProfileContainer);
 
-export default connect(mapStateToProps, {setUserProfile})(withRouterProfileContainer);
+export default connect<MapStateToPropsType, MapDispatchToPropsType, {}, StateType>(mapStateToProps, {setUserProfile})(withRouterProfileContainer);
