@@ -21,6 +21,7 @@ export enum ActionType {
   toggleFetching = "TOGGLE-FETCHING",
   setUserProfile = "SET-USER-PROFILE",
   setAuthData = "SET-AUTH-DATA",
+  togglePendingFollow = "TOGGLE-PENDING-FOLLOW",
 }
 
 export enum EndPoint {
