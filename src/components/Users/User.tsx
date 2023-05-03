@@ -10,9 +10,10 @@ type UserPropsType = {
   unfollow: () => void
   path: string
   className: string
+  disabled: boolean
 }
 
-const User: FC<UserPropsType> = ({user, className, follow, unfollow, path}) => {
+const User: FC<UserPropsType> = ({user, className, follow, unfollow, path, disabled}) => {
   return (
     <div className={className}>
       <NavLink to={path}>
@@ -21,7 +22,7 @@ const User: FC<UserPropsType> = ({user, className, follow, unfollow, path}) => {
         </div>
       </NavLink>
       <div>{user.name}</div>
-      <button onClick={user.followed ? unfollow : follow}>
+      <button onClick={user.followed ? unfollow : follow} disabled={disabled}>
         {user.followed ? "follow" : "unfollow"}
       </button>
       <div>{user.uniqueUrlName}</div>
