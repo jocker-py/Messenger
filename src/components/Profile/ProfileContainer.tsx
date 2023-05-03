@@ -5,6 +5,7 @@ import {ProfileType, StateType} from "../../redux/types";
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
+import {compose} from "redux";
 
 type ProfileContainerPropsType = MapStateToPropsType & MapDispatchToPropsType & {
   match: {
@@ -38,9 +39,7 @@ type MapDispatchToPropsType = {
   getProfile: (userId: number) => void
 }
 
-// @ts-ignore
-const withRedirectProfileContainer = withAuthRedirect(ProfileContainer);
-// @ts-ignore
-const withRouterProfileContainer = withRouter(withRedirectProfileContainer);
 
-export default connect<MapStateToPropsType, MapDispatchToPropsType, {}, StateType>(mapStateToProps, {getProfile})(withRouterProfileContainer);
+export default compose<any>(
+  connect<MapStateToPropsType, MapDispatchToPropsType, {}, StateType>(mapStateToProps, {getProfile}),
+  withRouter, withAuthRedirect)(ProfileContainer);

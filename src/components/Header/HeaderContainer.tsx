@@ -3,6 +3,7 @@ import Header from "./Header";
 import {AuthType, StateType} from "../../redux/types";
 import {setAuthMe} from "../../redux/auth-reducer";
 import {connect} from "react-redux";
+import {compose} from "redux";
 
 
 export type HeaderPropsType = MapStateToPropsType & MapDispatchToPropsType
@@ -28,4 +29,4 @@ const mapStateToProps = (state: StateType): MapStateToPropsType => ({
   isAuth: state.auth.isAuth,
 });
 
-export default connect(mapStateToProps, {setAuthMe})(HeaderContainer);
+export default compose<any>(connect(mapStateToProps, {setAuthMe}))(HeaderContainer);

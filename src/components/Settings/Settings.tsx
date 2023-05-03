@@ -1,5 +1,6 @@
 import React, {FC} from "react";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
+import {compose} from "redux";
 
 const Settings: FC = () => {
   return (<div>
@@ -7,6 +8,4 @@ const Settings: FC = () => {
   </div>);
 };
 
-// @ts-ignore
-const withRedirectSettings = withAuthRedirect(Settings);
-export default withRedirectSettings;
+export default compose<any>(withAuthRedirect)(Settings)
