@@ -1,38 +1,23 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
 import Users from "./Users";
-import {StateType, UsersType, UserType} from "../../redux/types";
+import {StateType, UsersType} from "../../redux/types";
 import {
   setCurrentPage,
-  setTotalUsersCount,
-  setUsers,
-  toggleFetching,
   follow,
-  unfollow, togglePendingFollow,
+  unfollow, togglePendingFollow, getUsers,
 } from "../../redux/users-reducer";
-import {usersAPI} from "../../api/api";
 
 export type UsersContainerPropsType = MapStateToPropsType & MapDispatchToPropsType
 
 class UsersContainer extends Component<UsersContainerPropsType> {
-  getUsers(page: number, count: number) {
-    this.props.toggleFetching(true);
-    usersAPI
-      .getUsers(page, count)
-      .then(res => {
-        this.props.setUsers(res.items);
-        this.props.setTotalUsersCount(res.totalCount);
-        this.props.toggleFetching(false);
-      });
-  }
-
   componentDidMount() {
-    this.getUsers(this.props.currentPage, this.props.pageSize);
+    this.props.getUsers(this.props.currentPage, this.props.pageSize);
   }
 
   onPostChanged = (page: number) => {
     this.props.setCurrentPage(page);
-    this.getUsers(page, this.props.pageSize);
+    this.props.getUsers(page, this.props.pageSize);
   };
 
   render() {
@@ -51,21 +36,17 @@ const mapStateToProps = (state: StateType): MapStateToPropsType => ({
 });
 
 type MapDispatchToPropsType = {
-  setUsers: (users: Array<UserType>) => void;
   follow: (id: number) => void;
   unfollow: (id: number) => void;
-  setTotalUsersCount: (usersCount: number) => void
   setCurrentPage: (page: number) => void
-  toggleFetching: (isFetching: boolean) => void
   togglePendingFollow: (userId: number, isPending: boolean) => void
+  getUsers: (page: number, count: number) => void
 }
 
 export default connect<MapStateToPropsType, MapDispatchToPropsType, {}, StateType>(mapStateToProps, {
-  setUsers,
   follow,
   unfollow,
-  setTotalUsersCount,
   setCurrentPage,
-  toggleFetching,
   togglePendingFollow,
+  getUsers,
 })(UsersContainer);

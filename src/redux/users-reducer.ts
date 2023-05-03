@@ -1,5 +1,7 @@
 import {ActionType} from "../config/enums";
 import {IAction, UsersType, UserType} from "./types";
+import {usersAPI} from "../api/api";
+import {Dispatch} from "redux";
 
 
 type SetUsersType = (users: Array<UserType>) => IAction;
@@ -80,6 +82,19 @@ const usersReducer: UsersReducerType = (
     default :
       return state;
   }
+};
+
+export const getUsers = (page: number, count: number) => {
+  return (dispatch: Dispatch<IAction>) => {
+    dispatch(toggleFetching(true));
+    usersAPI
+      .getUsers(page, count)
+      .then(res => {
+        dispatch(setUsers(res.items));
+        dispatch(setTotalUsersCount(res.totalCount));
+        dispatch(toggleFetching(false));
+      });
+  };
 };
 
 export default usersReducer;
