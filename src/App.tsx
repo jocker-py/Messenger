@@ -11,6 +11,7 @@ import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import UsersContainer from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
+import Login from "./components/Login/Login";
 
 
 const App: FC = () => {
@@ -27,6 +28,7 @@ const App: FC = () => {
           <Route path={Path.NEWS} render={() => <News/>}/>
           <Route path={Path.MUSIC} render={() => <Music/>}/>
           <Route path={Path.SETTINGS} render={() => <Settings/>}/>
+          <Route path={Path.LOGIN} render={() => <Login/>}/>
         </div>
         <Footer/>
       </div>
