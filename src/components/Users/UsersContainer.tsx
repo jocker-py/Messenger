@@ -1,25 +1,18 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
 import Users from "./Users";
-import {StateType, UsersType} from "../../redux/types";
+import {StateType, UsersType, UserType} from "../../redux/types";
 import {
   setCurrentPage,
   setTotalUsersCount,
   setUsers,
   toggleFetching,
   follow,
-  unfollow,
+  unfollow, togglePendingFollow,
 } from "../../redux/users-reducer";
 import {usersAPI} from "../../api/api";
 
-export type UsersContainerPropsType = UsersType & {
-  setUsers: (users: UsersType) => void;
-  follow: (id: number) => void;
-  unfollow: (id: number) => void;
-  setTotalUsersCount: (usersCount: number) => void
-  setCurrentPage: (page: number) => void
-  toggleFetching: (isFetching: boolean) => void
-}
+export type UsersContainerPropsType = MapStateToPropsType & MapDispatchToPropsType
 
 class UsersContainer extends Component<UsersContainerPropsType> {
   getUsers(page: number, count: number) {
@@ -47,20 +40,32 @@ class UsersContainer extends Component<UsersContainerPropsType> {
   }
 }
 
-type MapStateToPropsType = (state: StateType) => UsersType;
-const mapStateToProps: MapStateToPropsType = (state) => ({
+type MapStateToPropsType = UsersType
+const mapStateToProps = (state: StateType): MapStateToPropsType => ({
   users: state.usersPage.users,
   totalUsersCount: state.usersPage.totalUsersCount,
   currentPage: state.usersPage.currentPage,
   pageSize: state.usersPage.pageSize,
   isFetching: state.usersPage.isFetching,
+  isToggleFollowing: state.usersPage.isToggleFollowing,
 });
 
-export default connect(mapStateToProps, {
+type MapDispatchToPropsType = {
+  setUsers: (users: Array<UserType>) => void;
+  follow: (id: number) => void;
+  unfollow: (id: number) => void;
+  setTotalUsersCount: (usersCount: number) => void
+  setCurrentPage: (page: number) => void
+  toggleFetching: (isFetching: boolean) => void
+  togglePendingFollow: (userId: number, isPending: boolean) => void
+}
+
+export default connect<MapStateToPropsType, MapDispatchToPropsType, {}, StateType>(mapStateToProps, {
   setUsers,
   follow,
   unfollow,
   setTotalUsersCount,
   setCurrentPage,
   toggleFetching,
+  togglePendingFollow,
 })(UsersContainer);
