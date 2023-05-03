@@ -4,6 +4,7 @@ import {getProfile} from "../../redux/profile-reducer";
 import {ProfileType, StateType} from "../../redux/types";
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 
 type ProfileContainerPropsType = MapStateToPropsType & MapDispatchToPropsType & {
   match: {
@@ -38,6 +39,8 @@ type MapDispatchToPropsType = {
 }
 
 // @ts-ignore
-const withRouterProfileContainer = withRouter(ProfileContainer);
+const withRedirectProfileContainer = withAuthRedirect(ProfileContainer);
+// @ts-ignore
+const withRouterProfileContainer = withRouter(withRedirectProfileContainer);
 
 export default connect<MapStateToPropsType, MapDispatchToPropsType, {}, StateType>(mapStateToProps, {getProfile})(withRouterProfileContainer);

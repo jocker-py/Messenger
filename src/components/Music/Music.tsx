@@ -1,9 +1,13 @@
-import React, {FC} from 'react';
+import React, {FC} from "react";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 
 const Music: FC = () => {
   return (<div>
     Music
-  </div>)
-}
+  </div>);
+};
 
-export default Music;
+// @ts-ignore
+const withRedirectMusic = withAuthRedirect(Music);
+
+export default withRedirectMusic;

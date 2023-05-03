@@ -7,6 +7,7 @@ import {
   follow,
   unfollow, togglePendingFollow, getUsers,
 } from "../../redux/users-reducer";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 
 export type UsersContainerPropsType = MapStateToPropsType & MapDispatchToPropsType
 
@@ -43,10 +44,13 @@ type MapDispatchToPropsType = {
   getUsers: (page: number, count: number) => void
 }
 
+// @ts-ignore
+const withRedirectUsersContainer = withAuthRedirect(UsersContainer);
+
 export default connect<MapStateToPropsType, MapDispatchToPropsType, {}, StateType>(mapStateToProps, {
   follow,
   unfollow,
   setCurrentPage,
   togglePendingFollow,
   getUsers,
-})(UsersContainer);
+})(withRedirectUsersContainer);
