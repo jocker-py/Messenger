@@ -10,8 +10,8 @@ export const setUsers: SetUsersType = (users) => ({type: ActionType.setUsers, us
 type FollowSuccessType = (id: number) => IAction;
 export const followSuccess: FollowSuccessType = (id) => ({type: ActionType.follow, id});
 
-type unFollowSuccessType = (id: number) => IAction;
-export const unFollowSuccess: unFollowSuccessType = (id) => ({type: ActionType.unfollow, id});
+type UnfollowSuccessType = (id: number) => IAction;
+export const unfollowSuccess: UnfollowSuccessType = (id) => ({type: ActionType.unfollow, id});
 
 type SetTotalUsersCountType = (usersCount: number) => IAction;
 export const setTotalUsersCount: SetTotalUsersCountType = (usersCount) => ({
@@ -104,7 +104,17 @@ export const follow = (userId: number) => {
       .follow(userId)
       .then(res => res && dispatch(followSuccess(userId)))
       .then(() => dispatch(togglePendingFollow(userId, false)));
-  }
+  };
+};
+
+export const unfollow = (userId: number) => {
+  return (dispatch: Dispatch<IAction>) => {
+    dispatch(togglePendingFollow(userId, true));
+    usersAPI
+      .unfollow(userId)
+      .then(res => res && dispatch(unfollowSuccess(userId)))
+      .then(() => dispatch(togglePendingFollow(userId, false)));
+  };
 };
 
 export default usersReducer;
