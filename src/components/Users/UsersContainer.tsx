@@ -36,7 +36,7 @@ const mapStateToProps = (state: StateType): MapStateToPropsType => ({
 });
 
 type MapDispatchToPropsType = {
-  follow: (id: number) => void;
+  follow: (userId: number) => void;
   unfollow: (id: number) => void;
   setCurrentPage: (page: number) => void
   togglePendingFollow: (userId: number, isPending: boolean) => void

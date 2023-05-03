@@ -97,5 +97,14 @@ export const getUsers = (page: number, count: number) => {
   };
 };
 
+export const follow = (userId: number) => {
+  return (dispatch: Dispatch<IAction>) => {
+    dispatch(togglePendingFollow(userId, true));
+    usersAPI
+      .follow(userId)
+      .then(res => res && dispatch(followSuccess(userId)))
+      .then(() => dispatch(togglePendingFollow(userId, false)));
+  }
+};
 
 export default usersReducer;

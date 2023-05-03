@@ -15,13 +15,7 @@ type UsersPropsType = UsersContainerPropsType & {
 const Users: FC<UsersPropsType> = (props) => {
   const usersElements = props.users.map((user: UserType) => {
     const pathToUser = `${Path.PROFILE}/${user.id}`;
-    const follow = () => {
-      props.togglePendingFollow(user.id, true);
-      usersAPI
-        .follow(user.id)
-        .then(res => res && props.follow(user.id))
-        .then(() => props.togglePendingFollow(user.id, false));
-    };
+    const follow = () => props.follow(user.id);
     const unfollow = () => {
       props.togglePendingFollow(user.id, true);
       usersAPI
