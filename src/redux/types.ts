@@ -36,6 +36,7 @@ export type UsersType = {
   currentPage: number
   pageSize: number
   isFetching: boolean
+  isToggleFollowing: Array<UserType["id"]>
 }
 
 export type NavbarLinkType = {
@@ -114,4 +115,5 @@ export type IAction = {
   login?: string,
   email?: string,
   userId?: number,
+  isPending?: boolean,
 };
