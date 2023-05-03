@@ -1,10 +1,11 @@
 import React, {FC} from "react";
 import s from "./Users.module.css";
-import {UsersContainerPropsType} from "./UsersContainer";
 import {Loader} from "../common/Loader/Loader";
 import {Path} from "../../config/enums";
 import User from "./User";
 import {usersAPI} from "../../api/api";
+import {UserType} from "../../redux/types";
+import {UsersContainerPropsType} from "./UsersContainer";
 
 
 type UsersPropsType = UsersContainerPropsType & {
@@ -12,21 +13,26 @@ type UsersPropsType = UsersContainerPropsType & {
 }
 
 const Users: FC<UsersPropsType> = (props) => {
-  const usersElements = props.users.map(user => {
+  const usersElements = props.users.map((user: UserType) => {
     const pathToUser = `${Path.PROFILE}/${user.id}`;
     const follow = () => {
+      props.togglePendingFollow(user.id, true);
       usersAPI
         .follow(user.id)
-        .then(res => res && props.follow(user.id));
+        .then(res => res && props.follow(user.id))
+        .then(() => props.togglePendingFollow(user.id, false))
     };
     const unfollow = () => {
+      props.togglePendingFollow(user.id, true);
       usersAPI
         .unfollow(user.id)
-        .then(res => res && props.unfollow(user.id));
+        .then(res => res && props.unfollow(user.id))
+        .then(() => props.togglePendingFollow(user.id, false))
     };
-
+    const disableUserButton = props.isToggleFollowing.some((id) => user.id === id)
     return <User key={user.id} className={s.userItem} user={user}
-                 follow={follow} unfollow={unfollow} path={pathToUser}/>;
+                 follow={follow} unfollow={unfollow} path={pathToUser}
+                 disabled={disableUserButton}/>;
 
   });
   const pages = Math.ceil(props.totalUsersCount / props.pageSize);
