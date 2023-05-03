@@ -4,8 +4,8 @@ import Dialogs from "./Dialogs";
 import {DialogsType, StateType} from "../../redux/types";
 import {connect} from "react-redux";
 
-type MapStateToPropsType = (state: StateType) => DialogsType;
-const mapStateToProps: MapStateToPropsType = (state) => {
+type MapStateToPropsType = DialogsType;
+const mapStateToProps = (state: StateType): MapStateToPropsType => {
   return {
     dialogs: state.dialogsPage.dialogs,
     messages: state.dialogsPage.messages,
