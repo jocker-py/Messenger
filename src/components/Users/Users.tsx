@@ -5,39 +5,57 @@ import {Path} from "../../config/enums";
 import User from "./User";
 import {UserType} from "../../redux/types";
 import {UsersContainerPropsType} from "./UsersContainer";
+import {getPages} from "../../helpers/getPages";
 
 
 type UsersPropsType = UsersContainerPropsType & {
   onPostChanged: (page: number) => void;
 }
 
-const Users: FC<UsersPropsType> = (props) => {
-  const usersElements = props.users.map((user: UserType) => {
+const Users: FC<UsersPropsType> = ({
+                                     users,
+                                     follow,
+                                     unfollow,
+                                     totalUsersCount,
+                                     pageSize,
+                                     currentPage,
+                                     onPostChanged,
+                                     isFetching,
+                                     isToggleFollowing,
+                                   }) => {
+  const usersElements = users.map((user: UserType) => {
+    const onClickFollow = () => follow(user.id);
+    const onClickUnfollow = () => unfollow(user.id);
+
     const pathToUser = `${Path.PROFILE}/${user.id}`;
-    const follow = () => props.follow(user.id);
-    const unfollow = () => props.unfollow(user.id);
-    const disableUserButton = props.isToggleFollowing.some((id) => user.id === id);
+    const disableUserButton = isToggleFollowing.some((id) => user.id === id);
+
     return <User key={user.id} className={s.userItem} user={user}
-                 follow={follow} unfollow={unfollow} path={pathToUser}
+                 follow={onClickFollow} unfollow={onClickUnfollow} path={pathToUser}
                  disabled={disableUserButton}/>;
 
   });
-  const pages = Math.ceil(props.totalUsersCount / props.pageSize);
-  const pagesElements = pages && new Array(pages).slice(0, 5).fill(1)
-    .map((page, idx) => page + idx)
-    .map(page => <div key={page}
-                      onClick={() => props.onPostChanged(page)}
-                      className={page === props.currentPage ?
-                        `${s.pageItem} ${s.selectedPageItem}`
-                        : s.pageItem}>{page}</div>);
+
+  const pagesElements = getPages(totalUsersCount, pageSize).map(page => {
+    const isCurrentPage = page === currentPage;
+    const onClickPage = () => onPostChanged(page);
+    return (
+      <div key={page}
+           onClick={onClickPage}
+           className={isCurrentPage ?
+             `${s.pageItem} ${s.selectedPageItem}`
+             : s.pageItem}>{page}
+      </div>
+    );
+  });
   return (
     <>
       {
-        props.isFetching ?
+        isFetching ?
           <Loader/> :
           <>
             <div className={s.userList}>{usersElements}</div>
-            <div className={s.pageList}>{pages && pagesElements}</div>
+            <div className={s.pageList}>{pagesElements}</div>
           </>
       }
     </>
