@@ -7,11 +7,11 @@ import {Dispatch} from "redux";
 type SetUsersType = (users: Array<UserType>) => IAction;
 export const setUsers: SetUsersType = (users) => ({type: ActionType.setUsers, users});
 
-type FollowType = (id: number) => IAction;
-export const follow: FollowType = (id) => ({type: ActionType.follow, id});
+type FollowSuccessType = (id: number) => IAction;
+export const followSuccess: FollowSuccessType = (id) => ({type: ActionType.follow, id});
 
-type UnfollowType = (id: number) => IAction;
-export const unfollow: UnfollowType = (id) => ({type: ActionType.unfollow, id});
+type unFollowSuccessType = (id: number) => IAction;
+export const unFollowSuccess: unFollowSuccessType = (id) => ({type: ActionType.unfollow, id});
 
 type SetTotalUsersCountType = (usersCount: number) => IAction;
 export const setTotalUsersCount: SetTotalUsersCountType = (usersCount) => ({
@@ -96,5 +96,6 @@ export const getUsers = (page: number, count: number) => {
       });
   };
 };
+
 
 export default usersReducer;
