@@ -1,6 +1,6 @@
 import {ActionType} from "../config/enums";
 import {IAction, PostType, ProfileType, UserProfileType} from "./types";
-import {usersAPI} from "../api/api";
+import {profileAPI} from "../api/api";
 import {Dispatch} from "redux";
 
 
@@ -52,7 +52,7 @@ const profileReducer: ProfileReducerType = (state = initialState, action) => {
 
 export const getProfile = (userId: number) => {
   return (dispatch: Dispatch<IAction>) => {
-    return usersAPI
+    return profileAPI
       .getProfile(userId)
       .then(data => dispatch(setUserProfile(data)));
   };
