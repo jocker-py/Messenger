@@ -45,7 +45,10 @@ export const authAPI = {
 
 export const usersAPI = {
   getUsers,
-  getProfile,
   follow,
   unfollow,
 };
+
+export const profileAPI = {
+  getProfile,
+}
