@@ -29,6 +29,7 @@ export enum EndPoint {
   root = "https://social-network.samuraijs.com/api/1.0/",
   users = "users/",
   profile = "profile/",
+  status = "profile/status/",
   authMe = "auth/me",
   follow = "follow/",
 }
