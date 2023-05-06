@@ -5,7 +5,6 @@ import Dialog from "./Dialog/Dialog";
 import {DialogsType} from "../../redux/types";
 
 type DialogsPropsType = DialogsType & {
-  updateNewMessageText: (text: string) => void,
   sendMessage: () => void,
 };
 
@@ -14,13 +13,8 @@ const Dialogs: FC<DialogsPropsType> = (props) => {
     ({id, name}) => <Dialog key={id} name={name} id={id}/>);
   const messagesElements = props.messages.map(
     ({id, message}) => <Message key={id} message={message} id={id}/>);
-  const messageText = props.newMessageText;
   const sendMessage = () => {
     props.sendMessage();
-  };
-  const changeNewMessageText = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    let text = e.currentTarget.value;
-    props.updateNewMessageText(text);
   };
 
   return (<div className={styles.dialogs}>
@@ -29,9 +23,7 @@ const Dialogs: FC<DialogsPropsType> = (props) => {
       <div className={styles.messagesList}>{messagesElements}</div>
       <div>
         <div>
-          <textarea value={messageText}
-                    placeholder={"Enter your message"}
-                    onChange={changeNewMessageText}/>
+          <textarea placeholder={"Enter your message"}/>
         </div>
         <div>
           <button onClick={sendMessage}>Add message</button>
