@@ -9,6 +9,7 @@ const mapStateToProps: MapStateToPropsType = (state) => {
   return {
     posts: state.profilePage.posts,
     userProfile: state.profilePage.userProfile,
+    profileStatus: state.profilePage.profileStatus,
   };
 };
 
