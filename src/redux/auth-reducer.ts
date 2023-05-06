@@ -40,8 +40,8 @@ export const setAuthMe = () => {
   return (dispatch: Dispatch<IAction>) => {
     authAPI
       .setAuthMe()
-      .then(data => data &&
-        dispatch(setAuthData(data.userId, data.email, data.login)));
+      .then(res => res.data.resultCode === 0 ? res.data.data : null)
+      .then(data => data && dispatch(setAuthData(data.userId, data.email, data.login)));
   };
 };
 
