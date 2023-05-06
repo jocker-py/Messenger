@@ -39,6 +39,11 @@ const getProfileStatus = (userId: number) => {
   return Request.get(EndPoint.status + userId);
 };
 
+const updateProfileStatus = (status: string) => {
+  return Request.put(EndPoint.status, {status: status});
+};
+
+
 
 export const authAPI = {
   setAuthMe,
@@ -53,4 +58,5 @@ export const usersAPI = {
 export const profileAPI = {
   getProfile,
   getProfileStatus,
+  updateProfileStatus,
 };
