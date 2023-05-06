@@ -52,6 +52,6 @@ export default compose<any>(connect<MapStateToPropsType, MapDispatchToPropsType,
   setCurrentPage,
   togglePendingFollow,
   getUsers,
-}), withAuthRedirect)(UsersContainer);
-
+}))(UsersContainer);
+// TODO: withAuthRedirect
 
