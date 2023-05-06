@@ -11,8 +11,6 @@ export enum Path {
 
 export enum ActionType {
   addPost = "ADD-POST",
-  updateNewPost = "UPDATE-NEW-POST",
-  updateNewMessageText = "UPDATE-NEW-MESSAGE-TEXT",
   sendMessage = "SEND-MESSAGE",
   setUsers = "SET-USERS",
   follow = "FOLLOW",
