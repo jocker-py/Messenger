@@ -4,8 +4,8 @@ import {profileAPI} from "../api/api";
 import {Dispatch} from "redux";
 
 
-export type AddPostType = () => IAction;
-export const addPost: AddPostType = () => ({type: ActionType.addPost});
+export type AddPostType = (text: string) => IAction;
+export const addPost: AddPostType = (text) => ({type: ActionType.addPost, text});
 
 export type UpdateNewPostTextType = (text: string) => IAction
 export const updateNewPostText: UpdateNewPostTextType = (text) => ({
