@@ -40,7 +40,7 @@ const profileReducer: ProfileReducerType = (state = initialState, action) => {
         id: state.posts.length + 1,
       };
       const updatedPosts = [newPost, ...state.posts];
-      return {...state, posts: updatedPosts, newPostText: ""};
+      return {...state, posts: updatedPosts};
     case ActionType.setUserProfile :
       return {...state, userProfile: action.userProfile || null};
     case ActionType.setProfileStatus :
