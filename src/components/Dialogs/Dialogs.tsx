@@ -9,20 +9,20 @@ type DialogsPropsType = DialogsType & {
   sendMessage: (text: string) => void,
 };
 
-const Dialogs: FC<DialogsPropsType> = (props) => {
-  const dialogsElements = props.dialogs.map(
+const Dialogs: FC<DialogsPropsType> = ({dialogs, messages, sendMessage}) => {
+  const dialogsElements = dialogs.map(
     ({id, name}) => <Dialog key={id} name={name} id={id}/>);
-  const messagesElements = props.messages.map(
+  const messagesElements = messages.map(
     ({id, message}) => <Message key={id} message={message} id={id}/>);
-  const sendMessage = ({dialogsMessage}: FormDataType) => {
-    props.sendMessage(dialogsMessage);
+  const onSendMessage = ({dialogsMessage}: FormDataType) => {
+    sendMessage(dialogsMessage);
   };
   return (
     <div className={styles.dialogs}>
       <div className={styles.dialogList}>{dialogsElements}</div>
       <div>
         <div className={styles.messagesList}>{messagesElements}</div>
-        <AddTextForm onSubmit={sendMessage}/>
+        <AddTextForm onSubmit={onSendMessage}/>
       </div>
     </div>
   );
