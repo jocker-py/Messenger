@@ -16,6 +16,12 @@ class ProfileStatus extends Component <ProfileStatusPropsType, ProfileStatusStat
     text: this.props.status || "No status",
   };
 
+  componentDidUpdate(prevProps: Readonly<ProfileStatusPropsType>, prevState: Readonly<ProfileStatusStateType>, snapshot?: any) {
+    if (this.props.status !== prevProps.status) {
+      this.setState({text: this.props.status || "No status"});
+    }
+  }
+
   activeEditMode = () => {
     this.setState({editMode: true});
   };
