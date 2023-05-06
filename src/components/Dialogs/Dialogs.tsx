@@ -1,11 +1,12 @@
-import React, {ChangeEvent, FC} from "react";
+import React, {FC} from "react";
 import styles from "./Dialogs.module.css";
 import Message from "./Message/Message";
 import Dialog from "./Dialog/Dialog";
 import {DialogsType} from "../../redux/types";
+import {AddTextForm, FormDataType} from "./AddTextForm/AddTextForm";
 
 type DialogsPropsType = DialogsType & {
-  sendMessage: () => void,
+  sendMessage: (text: string) => void,
 };
 
 const Dialogs: FC<DialogsPropsType> = (props) => {
@@ -13,24 +14,19 @@ const Dialogs: FC<DialogsPropsType> = (props) => {
     ({id, name}) => <Dialog key={id} name={name} id={id}/>);
   const messagesElements = props.messages.map(
     ({id, message}) => <Message key={id} message={message} id={id}/>);
-  const sendMessage = () => {
-    props.sendMessage();
+  const sendMessage = ({dialogsMessage}: FormDataType) => {
+    props.sendMessage(dialogsMessage);
   };
-
-  return (<div className={styles.dialogs}>
-    <div className={styles.dialogList}>{dialogsElements}</div>
-    <div>
-      <div className={styles.messagesList}>{messagesElements}</div>
+  return (
+    <div className={styles.dialogs}>
+      <div className={styles.dialogList}>{dialogsElements}</div>
       <div>
-        <div>
-          <textarea placeholder={"Enter your message"}/>
-        </div>
-        <div>
-          <button onClick={sendMessage}>Add message</button>
-        </div>
+        <div className={styles.messagesList}>{messagesElements}</div>
+        <AddTextForm onSubmit={sendMessage}/>
       </div>
     </div>
-  </div>);
+  );
 };
+
 
 export default Dialogs;
