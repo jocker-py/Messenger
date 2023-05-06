@@ -51,6 +51,8 @@ const profileReducer: ProfileReducerType = (state = initialState, action) => {
       return {...state, newPostText: action.text || ""};
     case ActionType.setUserProfile :
       return {...state, userProfile: action.userProfile || null};
+    case ActionType.setProfileStatus :
+      return {...state, profileStatus: action.profileStatus || ""};
     default :
       return state;
   }
