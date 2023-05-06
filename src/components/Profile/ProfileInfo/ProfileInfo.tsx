@@ -12,9 +12,11 @@ import ProfileStatus from "./ProfileStatus/ProfileStatus";
 
 type ProfileInfoType = {
   userProfile: UserProfileType
+  profileStatus: string
+  updateStatus: (status: string) => void;
 }
 
-const ProfileInfo: FC<ProfileInfoType> = ({userProfile}) => {
+const ProfileInfo: FC<ProfileInfoType> = ({userProfile, profileStatus, updateStatus}) => {
   if (!userProfile) return <div/>;
   const icons: { [key: string]: string } = {react, redux, ts, js, css};
   // TODO: contacts
@@ -27,7 +29,7 @@ const ProfileInfo: FC<ProfileInfoType> = ({userProfile}) => {
     if (item in icons) {
       return <li key={v1()}><img className={styles.wishImg} src={icons[item]} alt={item}/></li>;
     }
-    return <li>{item}</li>;
+    return <li key={v1()}>{item}</li>;
   });
   return (
     <div className={styles.mainContainer}>
@@ -38,7 +40,7 @@ const ProfileInfo: FC<ProfileInfoType> = ({userProfile}) => {
       </div>
       <div className={styles.description}>
         <h2>{fullName}</h2>
-        <ProfileStatus status={"Hello, my friends"}/>
+        <ProfileStatus status={profileStatus} updateStatus={updateStatus}/>
         <div>{userId}</div>
         <button>{lookingForAJob ? "I'm looking for a job" : "I'm happy working for company"}</button>
         {
