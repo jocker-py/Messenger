@@ -1,12 +1,6 @@
 import {ActionType} from "../config/enums";
 import {DialogsType, IAction} from "./types";
 
-export type updateNewMessageTextType = (text: string) => IAction;
-export const updateNewMessageText: updateNewMessageTextType = (text: string) => ({
-  type: ActionType.updateNewMessageText,
-  text: text,
-});
-
 export type sendMessageType = () => IAction;
 export const sendMessage: sendMessageType = () => ({type: ActionType.sendMessage});
 
@@ -36,8 +30,6 @@ const dialogsReducer: DialogsReducerType = (state = initialState, action) => {
     case ActionType.sendMessage:
       const newMessage = {message: state.newMessageText, id: state.messages.length + 1};
       return {...state, messages: [...state.messages, newMessage], newMessageText: ""};
-    case ActionType.updateNewMessageText:
-      return {...state, newMessageText: action.text || ""};
     default :
       return state;
   }
