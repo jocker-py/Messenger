@@ -11,6 +11,11 @@ type ProfileStatusStateType = {
 }
 
 class ProfileStatus extends Component <ProfileStatusPropsType, ProfileStatusStateType> {
+  state = {
+    editMode: false,
+    text: this.props.status || "No status",
+  };
+
   activeEditMode = () => {
     this.setState({editMode: true});
   };
