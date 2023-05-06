@@ -9,12 +9,12 @@ type MyPostsType = ProfileType & {
   addPost: (text: string) => void
 };
 
-const MyPosts: FC<MyPostsType> = (props) => {
-  const postsElements = props.posts.map(
+const MyPosts: FC<MyPostsType> = ({posts, addPost}) => {
+  const postsElements = posts.map(
     ({id, message, likes}) =>
       <Post key={id} id={id} likes={likes} message={message}/>);
   const onAddPost = ({postMessage}: FormDataType) => {
-    props.addPost(postMessage);
+    addPost(postMessage);
   };
   return (
     <div className={styles.posts}>
