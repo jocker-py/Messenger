@@ -21,14 +21,13 @@ const initialState: DialogsType = {
     {id: 5, message: "Yo!"},
     {id: 6, message: "Yo!"},
   ],
-  newMessageText: "",
 };
 
 type DialogsReducerType = (state: DialogsType, action: IAction) => DialogsType;
 const dialogsReducer: DialogsReducerType = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.sendMessage:
-      const newMessage = {message: state.newMessageText, id: state.messages.length + 1};
+      const newMessage = {message: '', id: state.messages.length + 1};
       return {...state, messages: [...state.messages, newMessage], newMessageText: ""};
     default :
       return state;
