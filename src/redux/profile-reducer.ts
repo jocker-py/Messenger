@@ -64,4 +64,12 @@ export const getProfile = (userId: number) => {
   };
 };
 
+export const getProfileStatus = (userId: number) => {
+  return (dispatch: Dispatch<IAction>) => {
+    return profileAPI
+      .getProfileStatus(userId)
+      .then(res => dispatch(setProfileStatus(res.data)));
+  };
+};
+
 export default profileReducer;
