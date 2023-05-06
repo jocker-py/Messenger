@@ -15,10 +15,6 @@ const getUsers = (page: number, count: number) => {
   return Request.get(EndPoint.users + `?page=${page}&count=${count}`);
 };
 
-const getProfile = (userId: number) => {
-  return Request.get(EndPoint.profile + userId);
-};
-
 const follow = (userId: number) => {
   return Request.post(EndPoint.follow + userId);
 
@@ -33,6 +29,17 @@ const setAuthMe = () => {
   return Request.get(EndPoint.authMe);
 };
 
+//Profile
+const getProfile = (userId: number) => {
+  return Request.get(EndPoint.profile + userId);
+
+};
+
+const getProfileStatus = (userId: number) => {
+  return Request.get(EndPoint.status + userId);
+};
+
+
 export const authAPI = {
   setAuthMe,
 };
@@ -45,4 +52,5 @@ export const usersAPI = {
 
 export const profileAPI = {
   getProfile,
-}
+  getProfileStatus,
+};
