@@ -75,4 +75,16 @@ export const getProfileStatus = (userId: number) => {
   };
 };
 
+export const updateProfileStatus = (status: string) => {
+  return (dispatch: Dispatch<IAction>) => {
+    return profileAPI
+      .updateProfileStatus(status)
+      .then(res => {
+        if (res.data.resultCode === 0) {
+          dispatch(setProfileStatus(status));
+        }
+      });
+  };
+};
+
 export default profileReducer;
