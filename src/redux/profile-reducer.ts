@@ -60,7 +60,7 @@ export const getProfile = (userId: number) => {
   return (dispatch: Dispatch<IAction>) => {
     return profileAPI
       .getProfile(userId)
-      .then(data => dispatch(setUserProfile(data)));
+      .then(res => dispatch(setUserProfile(res.data)));
   };
 };
 
