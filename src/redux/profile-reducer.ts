@@ -7,12 +7,6 @@ import {Dispatch} from "redux";
 export type AddPostType = (text: string) => IAction;
 export const addPost: AddPostType = (text) => ({type: ActionType.addPost, text});
 
-export type UpdateNewPostTextType = (text: string) => IAction
-export const updateNewPostText: UpdateNewPostTextType = (text) => ({
-  type: ActionType.updateNewPost,
-  text: text,
-});
-
 export type SetUserProfileType = (userProfile: UserProfileType) => IAction
 export const setUserProfile: SetUserProfileType = (userProfile) => {
   return {
@@ -32,7 +26,6 @@ const initialState: ProfileType = {
     {likes: 2, message: "Hello, how are you?", id: 1},
     {likes: 3, message: "I'm fine, what about you?", id: 2},
   ],
-  newPostText: "",
   userProfile: null,
   profileStatus: "",
 };
@@ -48,8 +41,6 @@ const profileReducer: ProfileReducerType = (state = initialState, action) => {
       };
       const updatedPosts = [newPost, ...state.posts];
       return {...state, posts: updatedPosts, newPostText: ""};
-    case ActionType.updateNewPost :
-      return {...state, newPostText: action.text || ""};
     case ActionType.setUserProfile :
       return {...state, userProfile: action.userProfile || null};
     case ActionType.setProfileStatus :
