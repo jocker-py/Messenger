@@ -34,6 +34,7 @@ const initialState: ProfileType = {
   ],
   newPostText: "",
   userProfile: null,
+  profileStatus: "",
 };
 
 type ProfileReducerType = (state: ProfileType, action: IAction) => ProfileType;
