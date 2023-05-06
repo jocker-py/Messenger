@@ -19,9 +19,11 @@ export enum ActionType {
   setCurrentPage = "SET-CURRENT-PAGE",
   toggleFetching = "TOGGLE-FETCHING",
   setUserProfile = "SET-USER-PROFILE",
+  setProfileStatus = "SET-PROFILE-STATUS",
   setAuthData = "SET-AUTH-DATA",
   togglePendingFollow = "TOGGLE-PENDING-FOLLOW",
 }
+
 
 export enum EndPoint {
   root = "https://social-network.samuraijs.com/api/1.0/",
