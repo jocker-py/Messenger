@@ -21,6 +21,12 @@ export const setUserProfile: SetUserProfileType = (userProfile) => {
   };
 };
 
+export type SetProfileStatusType = (status: string) => IAction
+export const setProfileStatus: SetProfileStatusType = (status) => ({
+  type: ActionType.setProfileStatus,
+  profileStatus: status,
+});
+
 const initialState: ProfileType = {
   posts: [
     {likes: 2, message: "Hello, how are you?", id: 1},
