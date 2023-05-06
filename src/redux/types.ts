@@ -73,8 +73,8 @@ export type UserProfileType = null | {
 
 export type ProfileType = {
   posts: Array<PostType>;
-  newPostText: string;
   userProfile: UserProfileType;
+  profileStatus: string;
 };
 
 export type AuthType = {
@@ -87,7 +87,6 @@ export type AuthType = {
 export type DialogsType = {
   messages: Array<MessageType>,
   dialogs: Array<DialogType>,
-  newMessageText: string
 };
 
 export type SidebarType = {
@@ -116,4 +115,5 @@ export type IAction = {
   email?: string,
   userId?: number,
   isPending?: boolean,
+  profileStatus?: string,
 };
