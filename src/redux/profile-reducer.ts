@@ -43,7 +43,7 @@ const profileReducer: ProfileReducerType = (state = initialState, action) => {
     case ActionType.addPost:
       const newPost: PostType = {
         likes: 0,
-        message: state.newPostText,
+        message: action.text || "",
         id: state.posts.length + 1,
       };
       const updatedPosts = [newPost, ...state.posts];
