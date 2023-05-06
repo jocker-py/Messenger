@@ -27,8 +27,8 @@ type DialogsReducerType = (state: DialogsType, action: IAction) => DialogsType;
 const dialogsReducer: DialogsReducerType = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.sendMessage:
-      const newMessage = {message: action.text || '', id: state.messages.length + 1};
-      return {...state, messages: [...state.messages, newMessage], newMessageText: ""};
+      const newMessage = {message: action.text || "", id: state.messages.length + 1};
+      return {...state, messages: [...state.messages, newMessage]};
     default :
       return state;
   }
