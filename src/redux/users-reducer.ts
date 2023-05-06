@@ -89,9 +89,10 @@ export const getUsers = (page: number, count: number) => {
     dispatch(toggleFetching(true));
     usersAPI
       .getUsers(page, count)
-      .then(res => {
-        dispatch(setUsers(res.items));
-        dispatch(setTotalUsersCount(res.totalCount));
+      .then(res => res.data)
+      .then(data => {
+        dispatch(setUsers(data.items));
+        dispatch(setTotalUsersCount(data.totalCount));
         dispatch(toggleFetching(false));
       });
   };
@@ -102,6 +103,7 @@ export const follow = (userId: number) => {
     dispatch(togglePendingFollow(userId, true));
     usersAPI
       .follow(userId)
+      .then((res) => res.data.resultCode === 0)
       .then(res => res && dispatch(followSuccess(userId)))
       .then(() => dispatch(togglePendingFollow(userId, false)));
   };
@@ -112,6 +114,7 @@ export const unfollow = (userId: number) => {
     dispatch(togglePendingFollow(userId, true));
     usersAPI
       .unfollow(userId)
+      .then(res => res.data.resultCode === 0)
       .then(res => res && dispatch(unfollowSuccess(userId)))
       .then(() => dispatch(togglePendingFollow(userId, false)));
   };

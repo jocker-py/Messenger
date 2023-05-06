@@ -1,6 +1,7 @@
 import axios from "axios";
 import {EndPoint} from "../config/enums";
 
+// base
 const Request = axios.create({
   withCredentials: true,
   baseURL: EndPoint.root,
@@ -9,34 +10,27 @@ const Request = axios.create({
   },
 });
 
+//Users
 const getUsers = (page: number, count: number) => {
-  return Request
-    .get(EndPoint.users + `?page=${page}&count=${count}`)
-    .then(res => res.data);
+  return Request.get(EndPoint.users + `?page=${page}&count=${count}`);
 };
 
 const getProfile = (userId: number) => {
-  return Request
-    .get(EndPoint.profile + userId)
-    .then(res => res.data);
+  return Request.get(EndPoint.profile + userId);
 };
 
 const follow = (userId: number) => {
-  return Request
-    .post(EndPoint.follow + userId)
-    .then((res) => res.data.resultCode === 0);
+  return Request.post(EndPoint.follow + userId);
+
 };
 
 const unfollow = (userId: number) => {
-  return Request
-    .delete(EndPoint.follow + userId)
-    .then(res => res.data.resultCode === 0);
+  return Request.delete(EndPoint.follow + userId);
 };
 
+// Auth
 const setAuthMe = () => {
-  return Request
-    .get(EndPoint.authMe)
-    .then(res => res.data.resultCode === 0 ? res.data.data : null);
+  return Request.get(EndPoint.authMe);
 };
 
 export const authAPI = {
