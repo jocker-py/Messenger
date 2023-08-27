@@ -1,5 +1,3 @@
-import {ActionType} from "../config/enums";
-
 export type PostType = {
   likes: number,
   message: string,
@@ -100,20 +98,4 @@ export type StateType = {
   dialogsPage: DialogsType,
   usersPage: UsersType,
   auth: AuthType,
-};
-
-export type IAction = {
-  type: ActionType,
-  text?: string,
-  users?: Array<UserType>,
-  id?: number,
-  usersCount?: number,
-  page?: number,
-  isFetching?: boolean,
-  userProfile?: UserProfileType
-  login?: string,
-  email?: string,
-  userId?: number,
-  isPending?: boolean,
-  profileStatus?: string,
 };
