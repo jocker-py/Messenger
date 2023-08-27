@@ -5,11 +5,11 @@ import Friends from "./Friends/Friends";
 import {SidebarType} from "../../redux/types";
 
 
-const Sidebar: FC<SidebarType> = (props) => {
+const Sidebar: FC<SidebarType> = ({friends, navLinks}) => {
   return (
     <div className={styles.sidebar}>
-      <Navbar navLinks={props.navLinks}/>
-      <Friends friends={props.friends}/>
+      <Navbar navLinks={navLinks}/>
+      <Friends friends={friends}/>
     </div>);
 };
 

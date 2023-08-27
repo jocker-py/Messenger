@@ -14,7 +14,8 @@ const Profile: FC<ProfilePropsType> = ({profileStatus, updateProfileStatus, user
   }
   return (
     <div>
-      <ProfileInfo userProfile={userProfile} profileStatus={profileStatus}
+      <ProfileInfo userProfile={userProfile}
+                   profileStatus={profileStatus}
                    updateStatus={updateProfileStatus}/>
       <MyPostsContainer/>
     </div>
