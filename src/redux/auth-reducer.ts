@@ -1,17 +1,10 @@
 import {ActionType} from "../config/enums";
-import {AuthType, IAction} from "./types";
+import {AuthType} from "./types";
 import {authAPI} from "../api/api";
 import {Dispatch} from "redux";
 
-type SetAuthDataType = (userId: number, email: string, login: string) => IAction;
-export const setAuthData: SetAuthDataType = (userId, email, login) => ({
-  type: ActionType.setAuthData,
-  userId,
-  login,
-  email,
-});
 
-
+// initial state
 const initialState: AuthType = {
   userId: null,
   login: null,
@@ -19,12 +12,12 @@ const initialState: AuthType = {
   isAuth: false,
 };
 
-type AuthReducerType = (state: AuthType, action: IAction) => AuthType;
-const authReducer: AuthReducerType = (
+// reducer
+const authReducer = (
   state = initialState,
-  {type, ...action},
+  action: AuthAction,
 ) => {
-  switch (type) {
+  switch (action.type) {
     case ActionType.setAuthData:
       return {
         ...state,
@@ -36,13 +29,22 @@ const authReducer: AuthReducerType = (
   }
 };
 
+// thunks
 export const setAuthMe = () => {
-  return (dispatch: Dispatch<IAction>) => {
+  return (dispatch: Dispatch) => {
     authAPI
       .setAuthMe()
       .then(res => res.data.resultCode === 0 ? res.data.data : null)
       .then(data => data && dispatch(setAuthData(data.userId, data.email, data.login)));
   };
 };
+
+// types
+type AuthAction = ReturnType<typeof setAuthData>;
+
+// actions
+export const setAuthData = (userId: number, email: string, login: string) => ({
+  type: ActionType.setAuthData, userId, login, email,
+} as const);
 
 export default authReducer;
