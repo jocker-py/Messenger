@@ -1,43 +1,9 @@
 import {ActionType} from "../config/enums";
-import {IAction, UsersType, UserType} from "./types";
+import {UsersType, UserType} from "./types";
 import {usersAPI} from "../api/api";
 import {Dispatch} from "redux";
 
-
-type SetUsersType = (users: Array<UserType>) => IAction;
-export const setUsers: SetUsersType = (users) => ({type: ActionType.setUsers, users});
-
-type FollowSuccessType = (id: number) => IAction;
-export const followSuccess: FollowSuccessType = (id) => ({type: ActionType.follow, id});
-
-type UnfollowSuccessType = (id: number) => IAction;
-export const unfollowSuccess: UnfollowSuccessType = (id) => ({type: ActionType.unfollow, id});
-
-type SetTotalUsersCountType = (usersCount: number) => IAction;
-export const setTotalUsersCount: SetTotalUsersCountType = (usersCount) => ({
-  type: ActionType.setTotalUsersCount,
-  usersCount,
-});
-
-type SetCurrentPageType = (page: number) => IAction;
-export const setCurrentPage: SetCurrentPageType = (page) => ({
-  type: ActionType.setCurrentPage,
-  page,
-});
-
-type ToggleFetchingType = (isFetching: boolean) => IAction;
-export const toggleFetching: ToggleFetchingType = (isFetching) => ({
-  type: ActionType.toggleFetching,
-  isFetching,
-});
-
-type TogglePendingFollow = (userId: number, isPending: boolean) => IAction;
-export const togglePendingFollow: TogglePendingFollow = (userId, isPending) => ({
-  type: ActionType.togglePendingFollow,
-  userId,
-  isPending,
-});
-
+// initial state
 const initialState: UsersType = {
   users: [],
   totalUsersCount: 0,
@@ -47,45 +13,48 @@ const initialState: UsersType = {
   isToggleFollowing: [],
 };
 
-type UsersReducerType = (state: UsersType, action: IAction) => UsersType;
-const usersReducer: UsersReducerType = (
+// reducer
+const usersReducer = (
   state = initialState,
-  {id, type, users, usersCount, page, isFetching, isPending, userId},
+  action: UsersAction,
 ) => {
-  switch (type) {
+  switch (action.type) {
     case ActionType.setUsers:
-      return users ? {...state, users: [...users]} : state;
+      return {...state, users: [...action.users]};
     case ActionType.follow:
       return {
-        ...state, users: state.users.map(user => user.id === id ?
-          {...user, followed: true} : user),
+        ...state, users: state.users.map(user => user.id === action.id ? {...user, followed: true} : user),
       };
     case ActionType.unfollow:
       return {
-        ...state, users: state.users.map(user => user.id === id ?
-          {...user, followed: false} : user),
+        ...state,
+        users: state.users.map(user => user.id === action.id ? {...user, followed: false} : user),
       };
     case ActionType.setTotalUsersCount:
-      return usersCount ? {...state, totalUsersCount: usersCount} : state;
+      return {...state, totalUsersCount: action.usersCount};
     case ActionType.setCurrentPage:
-      return page ? {...state, currentPage: page} : state;
+      return {...state, currentPage: action.page};
     case ActionType.toggleFetching:
-      return typeof isFetching === "boolean" ? {...state, isFetching} : state;
+      return {...state, isFetching: action.isFetching};
     case ActionType.togglePendingFollow:
-      if (userId) {
-        return isPending ?
-          {...state, isToggleFollowing: [...state.isToggleFollowing, userId]} :
-          {...state, isToggleFollowing: state.isToggleFollowing.filter(id => id !== userId)};
-      }
-      return state;
-
+      return action.isPending ?
+        {
+          ...state,
+          isToggleFollowing: [...state.isToggleFollowing, action.userId],
+        } :
+        {
+          ...state,
+          isToggleFollowing: state.isToggleFollowing.filter(id => id !== action.userId),
+        };
     default :
       return state;
   }
 };
 
+
+// thunks
 export const getUsers = (page: number, count: number) => {
-  return (dispatch: Dispatch<IAction>) => {
+  return (dispatch: Dispatch) => {
     dispatch(toggleFetching(true));
     usersAPI
       .getUsers(page, count)
@@ -99,7 +68,7 @@ export const getUsers = (page: number, count: number) => {
 };
 
 export const follow = (userId: number) => {
-  return (dispatch: Dispatch<IAction>) => {
+  return (dispatch: Dispatch) => {
     dispatch(togglePendingFollow(userId, true));
     usersAPI
       .follow(userId)
@@ -110,7 +79,7 @@ export const follow = (userId: number) => {
 };
 
 export const unfollow = (userId: number) => {
-  return (dispatch: Dispatch<IAction>) => {
+  return (dispatch: Dispatch) => {
     dispatch(togglePendingFollow(userId, true));
     usersAPI
       .unfollow(userId)
@@ -119,5 +88,31 @@ export const unfollow = (userId: number) => {
       .then(() => dispatch(togglePendingFollow(userId, false)));
   };
 };
+
+// actions
+export const setUsers = (users: Array<UserType>) => ({type: ActionType.setUsers, users} as const);
+export const followSuccess = (id: number) => ({type: ActionType.follow, id} as const);
+export const unfollowSuccess = (id: number) => ({type: ActionType.unfollow, id} as const);
+export const setTotalUsersCount = (usersCount: number) => ({
+  type: ActionType.setTotalUsersCount,
+  usersCount,
+} as const);
+export const setCurrentPage = (page: number) => ({type: ActionType.setCurrentPage, page} as const);
+export const toggleFetching = (isFetching: boolean) => ({type: ActionType.toggleFetching, isFetching} as const);
+export const togglePendingFollow = (userId: number, isPending: boolean) => ({
+  type: ActionType.togglePendingFollow,
+  userId,
+  isPending,
+} as const);
+
+// types
+type UsersAction =
+  ReturnType<typeof setUsers>
+  | ReturnType<typeof followSuccess>
+  | ReturnType<typeof unfollowSuccess>
+  | ReturnType<typeof setTotalUsersCount>
+  | ReturnType<typeof setCurrentPage>
+  | ReturnType<typeof toggleFetching>
+  | ReturnType<typeof togglePendingFollow>
 
 export default usersReducer;
