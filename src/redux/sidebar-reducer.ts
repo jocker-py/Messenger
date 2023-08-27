@@ -1,4 +1,4 @@
-import {IAction, SidebarType} from "./types";
+import {SidebarType} from "./types";
 import {Path} from "../config/enums";
 
 const initialState: SidebarType = {
@@ -51,7 +51,7 @@ const initialState: SidebarType = {
   ],
 };
 
-type SidebarReducerType = (state: SidebarType, action: IAction) => SidebarType;
+type SidebarReducerType = (state: SidebarType, action: any) => SidebarType;
 const sidebarReducer: SidebarReducerType = (state = initialState, action) => {
   switch (action.type) {
     default :
