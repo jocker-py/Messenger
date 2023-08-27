@@ -21,14 +21,20 @@ const App: FC = () => {
         <HeaderContainer/>
         <SidebarContainer/>
         <div className="app-wrapper-content">
-          <Route path={Path.USER_PROFILE} render={() => <ProfileContainer/>}/>
-          {/*<Route path={Path.PROFILE} render={() => <ProfileContainer/>}/>*/}
-          <Route path={Path.DIALOGS} render={() => <DialogsContainer/>}/>
-          <Route path={Path.USERS} render={() => <UsersContainer/>}/>
-          <Route path={Path.NEWS} render={() => <News/>}/>
-          <Route path={Path.MUSIC} render={() => <Music/>}/>
-          <Route path={Path.SETTINGS} render={() => <Settings/>}/>
-          <Route path={Path.LOGIN} render={() => <Login/>}/>
+          <Route path={Path.USER_PROFILE}
+                 render={() => <ProfileContainer/>}/>
+          <Route path={Path.DIALOGS}
+                 render={() => <DialogsContainer/>}/>
+          <Route path={Path.USERS}
+                 render={() => <UsersContainer/>}/>
+          <Route path={Path.NEWS}
+                 render={() => <News/>}/>
+          <Route path={Path.MUSIC}
+                 render={() => <Music/>}/>
+          <Route path={Path.SETTINGS}
+                 render={() => <Settings/>}/>
+          <Route path={Path.LOGIN}
+                 render={() => <Login/>}/>
         </div>
         <Footer/>
       </div>
